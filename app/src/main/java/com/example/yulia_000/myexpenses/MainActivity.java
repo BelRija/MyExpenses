@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Calender
         theDate = (TextView)findViewById(R.id.txtDate);
 
         Intent incomingIntent = getIntent();
