@@ -19,6 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="wrap_content"
         android:ems="10"
-        android:inputType="numberDecimal"/>
+        android:hint="Kontostand eintragen"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="50pt"
+        android:layout_height="wrap_content"
+        android:text="Ok" />
 
 </LinearLayout>
