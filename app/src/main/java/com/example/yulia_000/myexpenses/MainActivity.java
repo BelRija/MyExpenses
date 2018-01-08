@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
@@ -36,9 +38,17 @@ public class MainActivity extends AppCompatActivity {
         //Calender
         theDate = (TextView)findViewById(R.id.txtDate);
 
+
+
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
         theDate.setText(date);
+
+       // Calendar c = Calendar.getInstance();
+       // int mYear = c.get(Calendar.YEAR);
+       // int mMonth = c.get(Calendar.MONTH);
+       // int mDay = c.get(Calendar.DAY_OF_MONTH);
+       // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
 
         theDate.setOnClickListener(new OnClickListener(){
             @Override
