@@ -3,10 +3,22 @@
     <string name="action_settings">Settings</string>
     <string name="strHintTxt1">Kategorie hinzufügen</string>
 
-    <string-array name="feedbacktypelist">
+    <string-array name="kategorieliste">
         <item>Lebensmittel</item>
         <item>Auto</item>
         <item>Versicherungen</item>
         <item>Schule</item>
+        <item>Unterhaltung</item>
+        <item>Haus</item>
+        <item>Kleidung</item>
+        <item>Elektronik</item>
+        <item>Kinder</item>
+        <item>Job</item>
+        <item>Geschenk</item>
+        <item>Party</item>
+        <item>Spaß</item>
+        <item>Reise</item>
+        <item>Strafe</item>
+        <item>Sonstiges</item>
     </string-array>
 </resources>
