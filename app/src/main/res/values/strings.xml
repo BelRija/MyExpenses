@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">MyExpenses</string>
     <string name="action_settings">Settings</string>
+    <string name="strHintTxt1">Kategorie hinzufügen</string>
+
+    <string-array name="feedbacktypelist">
+        <item>Lebensmittel</item>
+        <item>Auto</item>
+        <item>Versicherungen</item>
+        <item>Schule</item>
+    </string-array>
 </resources>

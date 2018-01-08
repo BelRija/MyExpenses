@@ -1,20 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/fab_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.yulia_000.myexpenses.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
     <TextView
+        android:id="@+id/TextViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="10pt"
+        android:text="Kategorie auswählen:"
+        android:textSize="10pt"></TextView>
 
-</android.support.constraint.ConstraintLayout>
+    <Spinner
+        android:id="@+id/SpinnerFeedbackType"
+        android:layout_width="fill_parent"
+        android:layout_height="38dp"
+        android:entries="@array/feedbacktypelist">
+    </Spinner>
+
+
+    <TextView
+        android:id="@+id/TextViewTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bezeichnung:"
+        android:textSize="10pt"
+        tools:layout_marginTop="10pt"></TextView>
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/TextViewTitle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Betrag:"
+        android:textSize="10pt"
+        tools:layout_marginTop="10pt"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Euro" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=","
+            android:textSize="10pt" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="113dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Cent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text="€"
+            android:textSize="10pt" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextViewTitle7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datum:"
+        android:textSize="10pt"
+        tools:layout_marginTop="10pt"></TextView>
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_marginTop="10pt">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Abbrechen" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OK" />
+    </LinearLayout>
+
+</LinearLayout>
