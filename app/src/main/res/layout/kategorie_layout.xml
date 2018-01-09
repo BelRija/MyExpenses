@@ -21,10 +21,9 @@
 
     <Spinner
         android:id="@+id/SpinnerFeedbackType"
-        android:layout_width="fill_parent"
+        android:layout_width="214dp"
         android:layout_height="38dp"
-        android:entries="@array/kategorieliste">
-    </Spinner>
+        android:entries="@array/kategorieliste"></Spinner>
 
 
     <TextView
@@ -37,7 +36,7 @@
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Name"
@@ -58,7 +57,7 @@
 
         <EditText
             android:id="@+id/editText4"
-            android:layout_width="136dp"
+            android:layout_width="203dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -84,7 +83,7 @@
 
     <EditText
         android:id="@+id/txtDate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date" />

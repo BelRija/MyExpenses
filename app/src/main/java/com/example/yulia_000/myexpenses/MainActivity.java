@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView theDate;
+    private Button btnOkKategorie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Calender
         theDate = (TextView)findViewById(R.id.txtDate);
-
+        btnOkKategorie = (Button)findViewById(R.id.btnOk);
 
 
         Intent incomingIntent = getIntent();
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 
     @Override

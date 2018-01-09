@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CalenderActivity"></activity>
+        <activity android:name=".KategorieActivity"></activity>
+        <activity android:name=".KontostandActivity"></activity>
     </application>
 
 </manifest>
