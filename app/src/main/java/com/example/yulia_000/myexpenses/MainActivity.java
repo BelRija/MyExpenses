@@ -52,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
        // int mDay = c.get(Calendar.DAY_OF_MONTH);
        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
 
-        theDate.setOnClickListener(new OnClickListener(){
+
+
+      theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                         Intent intent = new Intent(MainActivity.this, CalenderActivity.class);

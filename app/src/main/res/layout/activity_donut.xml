@@ -19,7 +19,7 @@
         android:text="GO!"
         android:onClick="setValue"/>
 
-    <marija.ap.DonutProgress
+    <com.example.yulia_000.myexpenses.DonutProgress
         android:id="@+id/donut_progress"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -54,7 +54,7 @@
         android:layout_marginTop="70dp"/>
 
     <ImageButton
-        android:id="@+id/ueberblickImageButton"
+        android:id="@+id/hinzuImageButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_alignParentRight="true"

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.example.yulia_000.myexpenses.DonutProgress;
 
 public class DonutActivity extends AppCompatActivity {
 
+    private ImageButton btnHinzu;
     private DonutProgress donutProgress;
     private EditText text;
     String message;
@@ -29,6 +31,7 @@ public class DonutActivity extends AppCompatActivity {
 
         text=(EditText) findViewById( R.id.EditText );
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
+        btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -36,6 +39,18 @@ public class DonutActivity extends AppCompatActivity {
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
         setMax(message);
+
+        btnHinzu.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DonutActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void setDonutProgress(DonutProgress donutProgress) {
@@ -88,6 +103,8 @@ public class DonutActivity extends AppCompatActivity {
             donutProgress.setTextColor( Color.rgb(214, 17, 17));
         }
     }
+
+
 
 
 }
