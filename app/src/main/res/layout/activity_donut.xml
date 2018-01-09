@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".DonutActivity">
+
+    <EditText android:id="@+id/EditText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned|numberDecimal" />
+
+    <Button android:id="@+id/Button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GO!"
+        android:onClick="setValue"/>
+
+    <marija.ap.DonutProgress
+        android:id="@+id/donut_progress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
+        custom:donut_finished_color="#00c217"
+        custom:donut_color_red="#df0004"
+        custom:donut_color_green="#00af0c"
+        custom:donut_color_yellow="#ffe600"
+
+        custom:donut_finished_stroke_width="15dp"
+        android:backgroundTint="#13af02"
+        android:backgroundTintMode="add"
+        custom:donut_show_text="true"
+        custom:donut_unfinished_color="@color/primary_material_light"
+        custom:donut_unfinished_stroke_width="15dp"
+        custom:donut_progress="0" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/sparenImageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/round_button"
+        android:src="@drawable/sparen_logo1"
+        android:layout_marginRight="120dp"
+        android:layout_marginTop="70dp"/>
+
+    <ImageButton
+        android:id="@+id/ueberblickImageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/round_button"
+        android:src="@drawable/hinzu_logo5"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
