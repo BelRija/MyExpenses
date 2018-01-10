@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,10 +52,8 @@ public class MainActivity extends AppCompatActivity {
        // int mDay = c.get(Calendar.DAY_OF_MONTH);
        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
 
-
-
-
-   /*     theDate.setOnClickListener(new OnClickListener(){
+//Fehler
+/*        theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, CalenderActivity.class);

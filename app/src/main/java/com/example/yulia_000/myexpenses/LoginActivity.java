@@ -7,6 +7,10 @@ package com.example.yulia_000.myexpenses;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -25,6 +29,8 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         txtUserName=(EditText)this.findViewById(R.id.txtUname);
         txtPassword=(EditText)this.findViewById(R.id.txtPwd);
         btnReg=(Button)this.findViewById(R.id.btnReg);
@@ -40,6 +46,7 @@ public class LoginActivity extends Activity {
 
             }
         });
+
         btnLogin=(Button)this.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new OnClickListener() {
 
@@ -59,5 +66,8 @@ public class LoginActivity extends Activity {
 
             }
         });
-    }}
+    }
+
+
+}
 
