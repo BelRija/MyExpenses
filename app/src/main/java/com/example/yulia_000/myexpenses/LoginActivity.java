@@ -24,6 +24,7 @@ public class LoginActivity extends Activity {
     Button btnLogin;
     Button btnCancel;
     Button btnReg;
+    public static final String MSG = "MSG";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,8 @@ public class LoginActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
                     Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, Guthaben.class);
+                    String message =stringName;
+                    intent.putExtra(MSG, message);
                     startActivity(intent);
                 } else{
                     Toast.makeText(LoginActivity.this, "Invalid Login or Password",Toast.LENGTH_LONG).show();

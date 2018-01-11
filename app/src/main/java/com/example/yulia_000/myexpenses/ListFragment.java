@@ -72,7 +72,7 @@ public class ListFragment extends Fragment{
 
 
 
-        String [] aktienlisteArray = {
+        String [] listeArray = {
                 "",
                 "Laptop",
                 "Urlaub",
@@ -80,7 +80,7 @@ public class ListFragment extends Fragment{
                 "Handy"
         };
 
-        List<String> aktienListe = new ArrayList<>(Arrays.asList(aktienlisteArray));
+        List<String> aktienListe = new ArrayList<>(Arrays.asList(listeArray));
 
         ArrayAdapter <String> aktienlisteAdapter; // Beispieldaten in einer ArrayList
         aktienlisteAdapter = new ArrayAdapter<String>(
