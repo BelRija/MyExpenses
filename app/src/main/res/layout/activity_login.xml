@@ -5,75 +5,119 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginTop="70dp"
         android:stretchColumns="1">
 
-        <TextView
-            android:text="Login "
+        <!--        <TextView
             android:id="@+id/TextViewLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
+            android:text="Login "
             android:textColor="#000"
-            android:textSize="35sp">
-        </TextView>
+            android:textSize="35sp"></TextView>-->
+
+        <RadioGroup
+            android:layout_marginBottom="80dp"
+            android:layout_marginTop="50dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/RadioLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:button="@null"
+                    android:text="Login"
+                    android:textSize="35sp"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/RadioSignup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:text="Registrieren"
+                    android:textSize="35sp"
+                    android:onClick="onRadioButtonClicked"/>
+            </TableRow>
+        </RadioGroup>
+
 
         <TableRow>
+
             <TextView
-                android:text="User Name: "
                 android:id="@+id/TextView01"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="User Name: "
+                android:textColor="@android:color/background_dark"></TextView>
 
             <EditText
-                android:text=""
                 android:id="@+id/txtUname"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-            </EditText>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:text=""></EditText>
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:text="Password: "
                 android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </TextView>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Password: "
+                android:textColor="@android:color/background_dark"
+                ></TextView>
 
             <EditText
-                android:text=""
                 android:id="@+id/txtPwd"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:password="true">
-            </EditText>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:password="true"
+                android:text=""></EditText>
         </TableRow>
 
-        <TableRow>
+        <!--       <TableRow android:layout_marginTop="50dp">
 
             <Button
-                android:text="Login"
                 android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-            </Button>
+                android:layout_height="wrap_content"
+                android:text="Login"></Button>
 
 
             <Button
-                android:text="Registrieren"
                 android:id="@+id/btnReg"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-            </Button>
+                android:layout_height="wrap_content"
+                android:text="Registrieren"></Button>
 
-        </TableRow>
-
+        </TableRow>-->
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="220dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:width="20dp"
+            android:text="Weiter"></Button>
     </TableLayout>
 
 
