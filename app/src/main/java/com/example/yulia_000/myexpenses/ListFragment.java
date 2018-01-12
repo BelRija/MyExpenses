@@ -7,6 +7,7 @@ package com.example.yulia_000.myexpenses;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,10 +75,10 @@ public class ListFragment extends Fragment{
 
         String [] listeArray = {
                 "",
-                "Laptop",
-                "Urlaub",
-                "Tasche",
-                "Handy"
+                "Laptop, 200€",
+                "Urlaub, 500€",
+                "Tasche, 60€",
+                "Handy, 50€"
         };
 
         List<String> aktienListe = new ArrayList<>(Arrays.asList(listeArray));
@@ -91,13 +92,24 @@ public class ListFragment extends Fragment{
 
         View rootView = inflater.inflate(R.layout.list_fragment, container, false);
 
-        ListView aktienlisteListView = (ListView) rootView.findViewById(R.id.listview_liste);
-        aktienlisteListView.setAdapter(aktienlisteAdapter);
+        ListView listView = (ListView) rootView.findViewById(R.id.listview_liste);
+        listView.setAdapter(aktienlisteAdapter);
+        registerForContextMenu(listView);
 
         return rootView;
 
         //return inflater.inflate(R.layout.fragment_main, container, false);
 
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu( menu,v,menuInfo );
+        menu.setHeaderTitle( "Aktion auswählen" );
+        menu.add( 0,v.getId(),0,"Bearbeiten" );
+        menu.add( 0,v.getId(),0,"Löschen" );
+
+    }
+
 
 }

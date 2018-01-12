@@ -37,18 +37,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:button="@null"
+                    android:onClick="onRadioButtonClicked"
                     android:text="Login"
-                    android:textSize="35sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="35sp" />
 
                 <RadioButton
                     android:id="@+id/RadioSignup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@null"
+                    android:onClick="onRadioButtonClicked"
                     android:text="Registrieren"
-                    android:textSize="35sp"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:textSize="35sp" />
             </TableRow>
         </RadioGroup>
 

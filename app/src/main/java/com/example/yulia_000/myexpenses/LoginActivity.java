@@ -75,11 +75,13 @@ public class LoginActivity extends Activity {
                 if (checked)
                     rbtnL.setTypeface(null, Typeface.BOLD);
                     rbtnR.setTypeface(null, Typeface.NORMAL);
+
                     break;
             case R.id.RadioSignup:
                 if (checked)
                     rbtnR.setTypeface(null, Typeface.BOLD);
                     rbtnL.setTypeface(null, Typeface.NORMAL);
+
                     break;
         }
     }
