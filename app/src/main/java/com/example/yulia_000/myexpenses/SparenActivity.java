@@ -31,10 +31,24 @@ public class SparenActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sparen_hinzu_activity);
-
-
         txtBetrag=(EditText)this.findViewById(R.id.txtBetrag);
         txtDatum=(EditText)this.findViewById(R.id.txtDatum);
+        Intent incomingIntent = getIntent();
+        String date = incomingIntent.getStringExtra("date");
+
+        if(date!= null)
+            txtDatum.setText(date);
+
+        txtDatum.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(SparenActivity.this, CalenderActivity.class);
+                intent.putExtra("class", "sparen");
+                startActivity(intent);
+            }
+
+        });
+
         txtBezeichnung=(EditText)this.findViewById(R.id.txtBez);
 
         btnOK=(Button)this.findViewById(R.id.btnOK);
