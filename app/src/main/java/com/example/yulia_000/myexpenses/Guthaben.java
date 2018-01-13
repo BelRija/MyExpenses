@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -13,14 +14,19 @@ import android.widget.Toast;
 
 public class Guthaben extends Activity{
 
-    EditText text;
+    private EditText text;
     public static final String MSG = "MSG";
+    private String message;
+    private TextView txtUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.guthaben_activity );
-
+        txtUserName=(TextView)this.findViewById(R.id.TextViewName);
+        Intent intent = getIntent();
+        message = intent.getStringExtra(Guthaben.MSG);
+        txtUserName.setText("Hallo "+message.toString()+"!");
     }
 
     public void setValue(View view){

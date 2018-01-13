@@ -11,60 +11,29 @@
         android:layout_marginTop="70dp"
         android:stretchColumns="1">
 
-        <!--        <TextView
-            android:id="@+id/TextViewLogin"
+        <TextView
+            android:id="@+id/TextViewHinzu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="80dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginBottom="60dp"
             android:gravity="center"
-            android:text="Login "
+            android:text="Hinzufügen "
             android:textColor="#000"
-            android:textSize="35sp"></TextView>-->
-
-        <RadioGroup
-            android:layout_marginBottom="80dp"
-            android:layout_marginTop="50dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:gravity="center">
-
-                <RadioButton
-                    android:id="@+id/RadioLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:button="@null"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Login"
-                    android:textSize="35sp" />
-
-                <RadioButton
-                    android:id="@+id/RadioSignup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Registrieren"
-                    android:textSize="35sp" />
-            </TableRow>
-        </RadioGroup>
-
+            android:textSize="35sp"></TextView>
 
         <TableRow>
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@+id/TextViewB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:text="User Name: "
+                android:text="Betrag: "
                 android:textColor="@android:color/background_dark"></TextView>
 
             <EditText
-                android:id="@+id/txtUname"
+                android:id="@+id/txtBetrag"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -75,16 +44,35 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/TextView02"
+                android:id="@+id/TextViewDat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:text="Password: "
+                android:text="Datum: "
+                android:textColor="@android:color/background_dark"></TextView>
+
+            <EditText
+                android:id="@+id/txtDatum"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:text=""></EditText>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewBez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Bezeichnung: "
                 android:textColor="@android:color/background_dark"
                 ></TextView>
 
             <EditText
-                android:id="@+id/txtPwd"
+                android:id="@+id/txtBez"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -93,31 +81,15 @@
                 android:text=""></EditText>
         </TableRow>
 
-        <!--       <TableRow android:layout_marginTop="50dp">
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"></Button>
-
-
-            <Button
-                android:id="@+id/btnReg"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Registrieren"></Button>
-
-        </TableRow>-->
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnOK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="220dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
             android:width="20dp"
-            android:text="Weiter"></Button>
+            android:text="OK"></Button>
     </TableLayout>
 
 

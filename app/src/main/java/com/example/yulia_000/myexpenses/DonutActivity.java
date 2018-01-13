@@ -19,9 +19,10 @@ import com.example.yulia_000.myexpenses.DonutProgress;
 public class DonutActivity extends AppCompatActivity {
 
     private ImageButton btnHinzu;
+    private ImageButton btnSparen;
     private DonutProgress donutProgress;
     private EditText text;
-    String message;
+    private String message;
     float value;
 
     @Override
@@ -32,6 +33,7 @@ public class DonutActivity extends AppCompatActivity {
         text=(EditText) findViewById( R.id.EditText );
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
+        btnSparen=(ImageButton)this.findViewById(R.id.sparenImageButton);
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -50,6 +52,15 @@ public class DonutActivity extends AppCompatActivity {
             }
         });
 
+        btnSparen.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DonutActivity.this, ListActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
