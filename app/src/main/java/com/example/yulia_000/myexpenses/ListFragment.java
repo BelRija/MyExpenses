@@ -39,8 +39,6 @@ public class ListFragment extends Fragment{
         // Menü bekannt geben, dadurch kann unser Fragment Menü-Events verarbeiten
         setHasOptionsMenu(true);
 
-
-
     }
 
     @Override

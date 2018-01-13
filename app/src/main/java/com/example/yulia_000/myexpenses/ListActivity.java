@@ -20,7 +20,8 @@ import android.widget.ImageButton;
 
 public class ListActivity extends AppCompatActivity {
 
-    ImageButton btnHinzu;
+    private ImageButton btnHinzu;
+    private ImageButton btnZurueck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,21 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(ListActivity.this, SparenActivity.class);
-                    startActivity(intent);
+                Intent intent = new Intent(ListActivity.this, SparenActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        btnZurueck=(ImageButton)this.findViewById(R.id.sparenImageButton);
+
+        btnZurueck.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ListActivity.this, GeldZurueckActivity.class);
+                startActivity(intent);
 
             }
         });
