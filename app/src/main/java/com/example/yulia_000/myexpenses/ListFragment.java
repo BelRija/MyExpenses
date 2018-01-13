@@ -4,6 +4,7 @@ package com.example.yulia_000.myexpenses;
  * Created by Marija on 11.01.2018.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.util.Log;
 
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,6 +29,8 @@ import java.util.List;
 
 public class ListFragment extends Fragment{
 
+    private ImageButton btnHinzu;
+
     public ListFragment() {   }
 
     @Override
@@ -34,6 +38,9 @@ public class ListFragment extends Fragment{
         super.onCreate(savedInstanceState);
         // Menü bekannt geben, dadurch kann unser Fragment Menü-Events verarbeiten
         setHasOptionsMenu(true);
+
+
+
     }
 
     @Override
@@ -70,7 +77,6 @@ public class ListFragment extends Fragment{
         Log.i(LOG_TAG, "information - Meldung");
         Log.w(LOG_TAG, "warning     - Meldung");
         Log.e(LOG_TAG, "error       - Meldung");
-
 
 
         String [] listeArray = {
@@ -110,6 +116,5 @@ public class ListFragment extends Fragment{
         menu.add( 0,v.getId(),0,"Löschen" );
 
     }
-
 
 }

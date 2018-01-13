@@ -4,6 +4,7 @@ package com.example.yulia_000.myexpenses;
  * Created by Marija on 11.01.2018.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,13 +15,30 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class ListActivity extends AppCompatActivity {
+
+    ImageButton btnHinzu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
+        btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
+
+        btnHinzu.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                    Intent intent = new Intent(ListActivity.this, SparenActivity.class);
+                    startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -34,4 +52,9 @@ public class ListActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+/*    public void sparenHinzu(View view){
+        Intent intent = new Intent(ListActivity.this, SparenActivity.class);
+        startActivity(intent);
+    }*/
 }
