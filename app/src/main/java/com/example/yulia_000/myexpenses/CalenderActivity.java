@@ -10,10 +10,6 @@ import android.widget.CalendarView;
 
 import com.example.yulia_000.myexpenses.R;
 
-/**
- * Created by Yulia_000 on 08.01.2018.
- */
-
 public class CalenderActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
