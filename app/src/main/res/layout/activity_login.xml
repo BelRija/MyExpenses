@@ -11,18 +11,6 @@
         android:layout_marginTop="70dp"
         android:stretchColumns="1">
 
-        <!--        <TextView
-            android:id="@+id/TextViewLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="80dp"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:text="Login "
-            android:textColor="#000"
-            android:textSize="35sp"></TextView>-->
-
         <RadioGroup
             android:layout_marginBottom="80dp"
             android:layout_marginTop="50dp">

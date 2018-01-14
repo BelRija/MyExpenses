@@ -62,6 +62,16 @@ public class DonutActivity extends AppCompatActivity {
             }
         });
 
+        this.donutProgress.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DonutActivity.this, PieChartActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void setDonutProgress(DonutProgress donutProgress) {
