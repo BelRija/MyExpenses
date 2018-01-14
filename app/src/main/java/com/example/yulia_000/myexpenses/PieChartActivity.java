@@ -30,9 +30,10 @@ public class PieChartActivity extends Activity {
 
 
         List<PieEntry> entries = new ArrayList<>();
-
+        float x=5f;
         for(String k: kategories){
-            entries.add(new PieEntry(20f, k));
+            x+=5;
+            entries.add(new PieEntry(x, k));
         }
 
         PieDataSet set = new PieDataSet(entries, "");
