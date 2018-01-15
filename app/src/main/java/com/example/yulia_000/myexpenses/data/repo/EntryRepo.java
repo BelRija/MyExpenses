@@ -19,6 +19,7 @@ public class EntryRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + Entry.TABLE  + "("
+                + Entry.KEY_ID  + " TEXT PRIMARY KEY  ,"
                 + Entry.KEY_UserID  + " TEXT PRIMARY KEY  ,"
                 + Entry.KEY_Date + " TEXT, "
                 + Entry.KEY_Description + " TEXT, "
@@ -30,7 +31,8 @@ public class EntryRepo {
     public void insert(Entry entry) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
-        values.put(Entry.KEY_UserID, entry.getID());
+        values.put(Entry.KEY_ID, entry.getID());
+        values.put(Entry.KEY_UserID, entry.getUserID());
         values.put(Entry.KEY_Date, entry.getDate());
         values.put(Entry.KEY_Description, entry.getDescription());
         values.put(Entry.KEY_Kategory, entry.getKategory());

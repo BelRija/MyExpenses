@@ -9,6 +9,7 @@ public class Entry {
         public static final String TABLE = "Entry";
 
         // Labels Table Columns names
+        public static final String KEY_ID = "Id";
         public static final String KEY_UserID = "EntryId";
         public static final String KEY_Date = "Date";
         public static final String KEY_Description = "Description";
@@ -16,6 +17,7 @@ public class Entry {
         public static final String KEY_Amount = "Amount";
 
         private String ID ;
+        private String UserID ;
         private String Date;
         private String Description ;
         private String Kategory ;
@@ -27,6 +29,14 @@ public class Entry {
 
         public void setID(String ID) {
             this.ID = ID;
+        }
+
+        public String getUserID() {
+            return UserID;
+        }
+
+        public void setUserID(String userID) {
+            this.UserID = userID;
         }
 
         public String getDate() {
