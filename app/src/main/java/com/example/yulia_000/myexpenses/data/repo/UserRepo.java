@@ -26,7 +26,7 @@ public class UserRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + User.TABLE  + "("
-                + User.KEY_UserID  + " TEXT PRIMARY KEY  ,"
+                + User.KEY_UserID  + " TEXT PRIMARY KEY AUTOINCREMENT ,"
                 + User.KEY_Name + " TEXT, "
                 + User.KEY_Password  + " TEXT )";
     }

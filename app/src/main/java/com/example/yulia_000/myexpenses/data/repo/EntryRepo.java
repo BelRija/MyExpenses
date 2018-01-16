@@ -19,7 +19,7 @@ public class EntryRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + Entry.TABLE  + "("
-                + Entry.KEY_ID  + " TEXT PRIMARY KEY  ,"
+                + Entry.KEY_ID  + " TEXT PRIMARY KEY AUTOINCREMENT ,"
                 + Entry.KEY_UserID  + " TEXT PRIMARY KEY  ,"
                 + Entry.KEY_Date + " TEXT, "
                 + Entry.KEY_Description + " TEXT, "
