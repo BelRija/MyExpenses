@@ -26,7 +26,7 @@ public class UserRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + User.TABLE  + "("
-                + User.KEY_UserID  + " TEXT PRIMARY KEY AUTOINCREMENT ,"
+                + User.KEY_UserID  + " INT PRIMARY KEY AUTOINCREMENT ,"
                 + User.KEY_Name + " TEXT, "
                 + User.KEY_Password  + " TEXT )";
     }
@@ -34,7 +34,7 @@ public class UserRepo {
     public void insert(User user) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
-        values.put(User.KEY_UserID, user.getUserId());
+        //values.put(User.KEY_UserID, user.getUserId());
         values.put(User.KEY_Name, user.getName());
         values.put(User.KEY_Password, user.getPassword());
 
