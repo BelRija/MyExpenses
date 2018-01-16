@@ -46,6 +46,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ZusammenfassungActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

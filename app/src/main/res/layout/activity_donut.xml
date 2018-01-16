@@ -36,12 +36,14 @@
         custom:donut_unfinished_color="@color/primary_material_light"
         custom:donut_unfinished_stroke_width="15dp"
         custom:donut_progress="0" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="horizontal">
-    <ImageButton
+
+        <ImageButton
         android:id="@+id/sparenImageButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -53,7 +55,7 @@
         android:layout_marginRight="120dp"
         android:layout_marginTop="70dp"/>
 
-    <ImageButton
+        <ImageButton
         android:id="@+id/hinzuImageButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -64,6 +66,7 @@
         android:src="@drawable/hinzu_logo5"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="70dp"/>
+
     </LinearLayout>
 
 </LinearLayout>
