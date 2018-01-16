@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yulia_000.myexpenses.DonutProgress;
+import com.example.yulia_000.myexpenses.data.model.*;
+import com.example.yulia_000.myexpenses.data.model.Entry;
+import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
+
+import java.util.List;
 
 public class DonutActivity extends AppCompatActivity {
 
@@ -38,9 +44,43 @@ public class DonutActivity extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
+        if(message == null){
+            message = "2000";
+        }
+        int betrag = 0;
+        try {
+            betrag = Integer.parseInt(message);
+        } catch(NumberFormatException nfe) {
+        }
+
+        EntryRepo entryRepo = new EntryRepo();
+
+//        entryRepo.delete();
+        List<Entry> entrys =  entryRepo.getList();
+        Log.d("MyApp","I am here");
+        Log.d("MyApp",entrys.toString());
+
+        int entryBetrag = 0;
+        for (Entry entry : entrys){
+            try {
+                entryBetrag = Integer.parseInt(entry.getAmount());
+            } catch(NumberFormatException nfe) {
+            }
+            Log.d("getID",entry.getID()+"");
+            Log.d("getUserID",entry.getUserID()+"");
+            Log.d("getAmount",entry.getAmount()+"");
+            Log.d("getDate",entry.getDate()+"");
+            Log.d("getKategory",entry.getKategory()+"");
+            Log.d("getDescription",entry.getDescription()+"");
+
+            betrag =  betrag - entryBetrag;
+        }
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
-        setMax(message);
+
+
+
+        setMax(betrag+"");
 
         btnHinzu.setOnClickListener(new View.OnClickListener() {
 

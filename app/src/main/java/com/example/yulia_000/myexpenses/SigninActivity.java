@@ -45,7 +45,6 @@ public class SigninActivity extends Activity {
 
                     UserRepo userRepo = new UserRepo();
                     User user = new User();
-                    user.setUserId("1");
                     user.setName(stringName);
                     user.setPassword(stringPwd);
                     userRepo.insert(user);

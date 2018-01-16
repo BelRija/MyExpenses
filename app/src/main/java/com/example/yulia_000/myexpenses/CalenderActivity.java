@@ -30,9 +30,9 @@ public class CalenderActivity extends AppCompatActivity {
                 String date = i2 + "/" + (i1 + 1) + "/" + i;
                 Log.d(TAG, date);
                 Intent intent;
-                if(message.equals("sparen")){
+                if(message != null && message.equals("sparen")){
                     intent = new Intent(CalenderActivity.this, SparenActivity.class);
-                }else if(message.equals("zurueck")){
+                }else if(message != null && message.equals("zurueck")){
                     intent = new Intent(CalenderActivity.this, GeldZurueckActivity.class);
                 }else{
                     intent = new Intent(CalenderActivity.this, MainActivity.class);
