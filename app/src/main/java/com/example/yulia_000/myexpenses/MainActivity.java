@@ -10,8 +10,20 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.yulia_000.myexpenses.data.model.Entry;
+
+import com.example.yulia_000.myexpenses.data.model.User;
+import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
+import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.util.Calendar;
 
@@ -19,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView theDate;
+    private Spinner spinner;
+    private String kategoryText;
+    private TextView txtBezeichung;
+    private TextView txtBetrag;
+    private TextView txtDate;
     private Button btnOkKategorie;
 
     @Override
@@ -28,18 +45,39 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-        //Calender
         theDate = (TextView)findViewById(R.id.txtDate);
-        btnOkKategorie = (Button)findViewById(R.id.btnOk);
+        // txtKategorien = ((Spinner)findViewById(R.id.SpinnerFeedbackType));
+        spinner = (Spinner) findViewById(R.id.SpinnerFeedbackType);
+        txtBezeichung = (TextView)findViewById(R.id.txtBezeichungKategorien);
+        txtBetrag = (TextView)findViewById(R.id.txtEuroKategorien);
+        txtDate = (TextView)findViewById(R.id.txtDate);
+        btnOkKategorie = (Button)findViewById(R.id.btnKategorienOk);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategorieliste, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+       // spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                Object item = adapterView.getItemAtPosition(position);
+                if (item != null) {
+                    Toast.makeText(MainActivity.this, item.toString(),
+                            Toast.LENGTH_SHORT).show();
+                    kategoryText = item.toString();
+                }
+                Toast.makeText(MainActivity.this, "Selected",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
         Intent incomingIntent = getIntent();
@@ -53,13 +91,39 @@ public class MainActivity extends AppCompatActivity {
        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
 
 
+
+
+        btnOkKategorie.setOnClickListener(new OnClickListener(){
+           // String stringKategorie =
+            String stringBezeichung = txtBezeichung.getText().toString();
+            String stringBetrag = txtBetrag.getText().toString();
+            String stringDate = txtDate.getText().toString();
+
+
+            @Override
+            public void onClick(View view){
+                EntryRepo entryRepo = new EntryRepo();
+                Entry entry = new Entry();
+             //   entry.setID(entry.getID());
+                entry.setUserID("1");
+                entry.setKategory(kategoryText);
+                entry.setDescription(txtBezeichung.getText().toString());
+                entry.setAmount(txtBetrag.getText().toString());
+                entry.setDate(stringDate);
+                entryRepo.insert(entry);
+
+                Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+                startActivity(intent);
+            }
+        });
+
        theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, CalenderActivity.class);
                 startActivity(intent);
             }
-
         });
 
     }

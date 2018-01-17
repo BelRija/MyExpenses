@@ -35,7 +35,7 @@
         tools:layout_marginTop="10pt"></TextView>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txtBezeichungKategorien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,7 +56,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/txtEuroKategorien"
             android:layout_width="203dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,14 +95,14 @@
         tools:layout_marginTop="10pt">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btnAbbrechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Abbrechen" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnKategorienOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
