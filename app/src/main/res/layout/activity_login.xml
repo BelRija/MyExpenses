@@ -40,7 +40,6 @@
             </TableRow>
         </RadioGroup>
 
-
         <TableRow>
 
             <TextView
@@ -81,22 +80,6 @@
                 android:text=""></EditText>
         </TableRow>
 
-        <!--       <TableRow android:layout_marginTop="50dp">
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"></Button>
-
-
-            <Button
-                android:id="@+id/btnReg"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Registrieren"></Button>
-
-        </TableRow>-->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
@@ -107,6 +90,5 @@
             android:width="20dp"
             android:text="Weiter"></Button>
     </TableLayout>
-
 
 </RelativeLayout>
