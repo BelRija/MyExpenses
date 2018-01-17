@@ -58,6 +58,7 @@ public class LoginActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
+
                     if(userRepo.isLoggedIn(stringName,stringPwd)){
                         Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, Guthaben.class);
