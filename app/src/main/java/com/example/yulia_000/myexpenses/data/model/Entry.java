@@ -9,33 +9,33 @@ public class Entry {
         public static final String TABLE = "Entry";
 
         // Labels Table Columns names
-        public static final String KEY_ID = "Id";
+        public static final String KEY_ID = "id";
         public static final String KEY_UserID = "EntryId";
         public static final String KEY_Date = "Date";
         public static final String KEY_Description = "Description";
         public static final String KEY_Kategory = "Kategory";
         public static final String KEY_Amount = "Amount";
 
-        private String ID ;
-        private String UserID ;
+        private Integer ID;
+        private Integer UserID ;
         private String Date;
         private String Description ;
         private String Kategory ;
         private String Amount ;
 
-        public String getID() {
+        public Integer getID() {
             return ID;
         }
 
-        public void setID(String ID) {
+        public void setID(Integer ID) {
             this.ID = ID;
         }
 
-        public String getUserID() {
+        public Integer getUserID() {
             return UserID;
         }
 
-        public void setUserID(String userID) {
+        public void setUserID(Integer userID) {
             this.UserID = userID;
         }
 

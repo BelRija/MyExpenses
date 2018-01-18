@@ -23,8 +23,8 @@ public class EntryRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + Entry.TABLE  + "("
-                + Entry.KEY_ID  + " INT PRIMARY KEY,"
-                + Entry.KEY_UserID  + " TEXT,"
+                + Entry.KEY_ID  + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Entry.KEY_UserID  + " INTEGER,"
                 + Entry.KEY_Date + " TEXT, "
                 + Entry.KEY_Description + " TEXT, "
                 + Entry.KEY_Kategory + " TEXT, "
@@ -35,8 +35,8 @@ public class EntryRepo {
     public void insert(Entry entry) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
-        // values.put(Entry.KEY_ID, entry.getID());
-//        values.put(Entry.KEY_UserID, entry.getUserID());
+//        values.put(Entry.KEY_ID, entry.getID());
+        values.put(Entry.KEY_UserID, entry.getUserID());
         values.put(Entry.KEY_Date, entry.getDate());
         values.put(Entry.KEY_Description, entry.getDescription());
         values.put(Entry.KEY_Kategory, entry.getKategory());
@@ -56,7 +56,8 @@ public class EntryRepo {
         if (cursor.moveToFirst()) {
             do {
                 entry= new Entry();
-                entry.setUserID(cursor.getString(cursor.getColumnIndex(entry.KEY_UserID)));
+                entry.setID(cursor.getInt(cursor.getColumnIndex(entry.KEY_ID)));
+                entry.setUserID(cursor.getInt(cursor.getColumnIndex(entry.KEY_UserID)));
                 entry.setKategory(cursor.getString(cursor.getColumnIndex(entry.KEY_Kategory)));
                 entry.setDescription(cursor.getString(cursor.getColumnIndex(entry.KEY_Description)));
                 entry.setAmount(cursor.getString(cursor.getColumnIndex(entry.KEY_Amount)));

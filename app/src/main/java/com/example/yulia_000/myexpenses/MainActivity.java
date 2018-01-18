@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 EntryRepo entryRepo = new EntryRepo();
                 Entry entry = new Entry();
-             //   entry.setID(entry.getID());
-                entry.setUserID("1");
+                entry.setID(null);
+                entry.setUserID(1);
                 entry.setKategory(kategoryText);
                 entry.setDescription(txtBezeichung.getText().toString());
                 entry.setAmount(txtBetrag.getText().toString());

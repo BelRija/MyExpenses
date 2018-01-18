@@ -9,19 +9,19 @@ public class User {
         public static final String TABLE = "User";
 
         // Labels Table Columns names
-        public static final String KEY_UserID = "UserId";
+        public static final String KEY_UserID = "id";
         public static final String KEY_Name = "Name";
         public static final String KEY_Password = "Password";
 
-        private String ID ;
+        private Integer ID ;
         private String name;
         private String password ;
 
-        public String getUserId() {
+        public Integer getUserId() {
             return ID;
         }
 
-        public void setUserId(String ID) {
+        public void setUserId(Integer ID) {
             this.ID = ID;
         }
 

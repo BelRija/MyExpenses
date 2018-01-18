@@ -41,7 +41,9 @@ public class ZusammenfassungActivity extends Activity {
         for (Entry entry : entrys){
 
             entry_listing.add(
-                    "Beschreibung: "+entry.getDescription()+
+                    "ID: "+entry.getID()+
+                    "\nUser ID: "+entry.getUserID()+
+                    "\nBeschreibung: "+entry.getDescription()+
                     "\nKategorie: "+entry.getKategory()+
                     "\nBetrag: "+entry.getAmount()+
                     "\nDatum: "+entry.getDate()
