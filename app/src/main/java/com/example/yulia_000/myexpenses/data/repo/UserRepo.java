@@ -55,6 +55,18 @@ public class UserRepo {
         return true;
     }
 
+    public User getUserByName(String name){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String Query = "Select * from User where name = '" + name +"'";
+        Cursor cursor = db.rawQuery(Query, null);
+        if (cursor.moveToFirst()) {
+            user = new User();
+            user.setUserId(cursor.getInt(cursor.getColumnIndex(user.KEY_UserID)));
+            user.setName(cursor.getString(cursor.getColumnIndex(user.KEY_Name)));
+        }
+        return user;
+    }
+
     public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         db.delete(User.TABLE, null,null);

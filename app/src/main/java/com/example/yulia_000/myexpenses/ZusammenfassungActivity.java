@@ -1,7 +1,9 @@
 package com.example.yulia_000.myexpenses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,11 +32,11 @@ public class ZusammenfassungActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zusammenfassung_layout);
 
-
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
 
 
         EntryRepo entryRepo = new EntryRepo();
-        List<Entry> entrys =  entryRepo.getList();
+        List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
 
         List<String> entry_listing = new ArrayList<String>();
 

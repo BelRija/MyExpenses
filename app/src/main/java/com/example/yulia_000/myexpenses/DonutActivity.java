@@ -4,7 +4,9 @@ package com.example.yulia_000.myexpenses;
  * Created by Marija on 09.01.2018.
  */
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,7 +60,8 @@ public class DonutActivity extends AppCompatActivity {
         EntryRepo entryRepo = new EntryRepo();
 
 //        entryRepo.delete();
-        List<Entry> entrys =  entryRepo.getList();
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
         Log.d("MyApp","I am here");
         Log.d("MyApp",entrys.toString());
 

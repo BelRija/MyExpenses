@@ -47,11 +47,11 @@ public class EntryRepo {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Entry> getList(){
+    public List<Entry> getList(int id){
         Entry entry = new Entry();
         List<Entry> entrys = new ArrayList<Entry>();
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        String Query = "Select * from Entry";
+        String Query = "Select * from Entry WHERE "+Entry.KEY_UserID+" = "+id ;
         Cursor cursor = db.rawQuery(Query, null);
         if (cursor.moveToFirst()) {
             do {
