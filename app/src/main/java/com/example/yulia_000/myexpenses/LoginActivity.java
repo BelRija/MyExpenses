@@ -7,11 +7,13 @@ package com.example.yulia_000.myexpenses;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +31,8 @@ public class LoginActivity extends Activity {
     EditText txtUserName;
     EditText txtPassword;
     Button btnLogin;
-
-
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
 
 /*  Button btnCancel;
     Button btnReg;*/
@@ -40,11 +42,21 @@ public class LoginActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         txtUserName=(EditText)this.findViewById(R.id.txtUname);
         txtPassword=(EditText)this.findViewById(R.id.txtPwd);
+
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        if(sharedpreferences.getString("name", "" ) != null){
+            Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
+            startActivity(intent);
+        }
 
         btnLogin=(Button)this.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new OnClickListener() {
@@ -58,6 +70,8 @@ public class LoginActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
+
+
 
                     if(userRepo.isLoggedIn(stringName,stringPwd)){
                         Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();

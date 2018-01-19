@@ -26,7 +26,7 @@ public class UserRepo {
     }
     public static String createTable(){
         return "CREATE TABLE " + User.TABLE  + "("
-                + User.KEY_UserID  + " INT PRIMARY KEY,"
+                + User.KEY_UserID  + "  INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + User.KEY_Name + " TEXT, "
                 + User.KEY_Password  + " TEXT )";
     }
@@ -53,6 +53,18 @@ public class UserRepo {
         }
         cursor.close();
         return true;
+    }
+
+    public User getUserByName(String name){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String Query = "Select * from User where name = '" + name +"'";
+        Cursor cursor = db.rawQuery(Query, null);
+        if (cursor.moveToFirst()) {
+            user = new User();
+            user.setUserId(cursor.getInt(cursor.getColumnIndex(user.KEY_UserID)));
+            user.setName(cursor.getString(cursor.getColumnIndex(user.KEY_Name)));
+        }
+        return user;
     }
 
     public void delete( ) {

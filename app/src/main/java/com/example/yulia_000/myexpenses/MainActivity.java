@@ -1,6 +1,8 @@
 package com.example.yulia_000.myexpenses;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -102,10 +104,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view){
+
+                SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+
                 EntryRepo entryRepo = new EntryRepo();
                 Entry entry = new Entry();
-             //   entry.setID(entry.getID());
-                entry.setUserID("1");
+                entry.setID(null);
+                entry.setUserID(sharedpreferences.getInt("userId",0));
                 entry.setKategory(kategoryText);
                 entry.setDescription(txtBezeichung.getText().toString());
                 entry.setAmount(txtBetrag.getText().toString());

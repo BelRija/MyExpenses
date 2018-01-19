@@ -1,7 +1,9 @@
 package com.example.yulia_000.myexpenses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,10 @@ public class SigninActivity extends Activity {
     EditText txtUserName;
     EditText txtPassword;
     Button btnLogin;
-
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Name = "name";
+    public static final String ID = "userId";
     public static final String MSG = "MSG";
 
     @Override
@@ -31,6 +36,8 @@ public class SigninActivity extends Activity {
 
         txtUserName=(EditText)this.findViewById(R.id.txtUname);
         txtPassword=(EditText)this.findViewById(R.id.txtPwd);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         btnLogin=(Button)this.findViewById(R.id.btnSignin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +55,13 @@ public class SigninActivity extends Activity {
                     user.setName(stringName);
                     user.setPassword(stringPwd);
                     userRepo.insert(user);
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    User tmpuser = userRepo.getUserByName(stringName);
+                    editor.putInt(ID, tmpuser.getUserId());
+                    editor.putString(Name, user.getName());
+                    editor.commit();
 
                     Toast.makeText(SigninActivity.this, "SignIn Successful",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SigninActivity.this, Guthaben.class);
