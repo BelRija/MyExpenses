@@ -16,6 +16,7 @@ public class CalenderActivity extends AppCompatActivity {
 
     private CalendarView mCalenderView;
     private String  message;
+    private String msg,bez,betrag;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +24,26 @@ public class CalenderActivity extends AppCompatActivity {
         mCalenderView = (CalendarView)findViewById(R.id.calendarView);
         Intent intent = getIntent();
         message = intent.getStringExtra( "class" );
-
+        betrag = intent.getStringExtra( "betrag" );
+        bez = intent.getStringExtra( "bez" );
         mCalenderView.setOnDateChangeListener((new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
                 String date = i2 + "/" + (i1 + 1) + "/" + i;
                 Log.d(TAG, date);
                 Intent intent;
+
                 if(message != null && message.equals("sparen")){
                     intent = new Intent(CalenderActivity.this, SparenActivity.class);
+                    if(betrag!=null)
+                        intent.putExtra("betrag", betrag);
+                    if(bez!=null)
+                        intent.putExtra("bez", bez);
+
                 }else if(message != null && message.equals("zurueck")){
                     intent = new Intent(CalenderActivity.this, GeldZurueckActivity.class);
+                    if(betrag!=null)
+                        intent.putExtra("betrag", betrag);
                 }else{
                     intent = new Intent(CalenderActivity.this, MainActivity.class);
                 }

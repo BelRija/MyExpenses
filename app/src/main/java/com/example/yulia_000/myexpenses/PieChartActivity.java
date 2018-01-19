@@ -1,13 +1,19 @@
 package com.example.yulia_000.myexpenses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.yulia_000.myexpenses.data.model.*;
+import com.example.yulia_000.myexpenses.data.model.Entry;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -21,7 +27,7 @@ import java.util.List;
  * Created by Marija on 13.01.2018.
  */
 
-public class PieChartActivity extends Activity {
+public class PieChartActivity extends AppCompatActivity {
  private DonutActivity donut=new DonutActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +42,9 @@ public class PieChartActivity extends Activity {
          guthaben = Float.valueOf(message);}
 
         float guthabenP;
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         EntryRepo entryRepo = new EntryRepo();
-        List<com.example.yulia_000.myexpenses.data.model.Entry> entrys =  entryRepo.getList();
+        List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
 
         Resources res = getResources();
         String[] kategories = res.getStringArray(R.array.kategorieliste);
@@ -88,6 +95,30 @@ public class PieChartActivity extends Activity {
         set.setValueFormatter(new MyValueFormatter());
         chart.invalidate();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(PieChartActivity.this, ZusammenfassungActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

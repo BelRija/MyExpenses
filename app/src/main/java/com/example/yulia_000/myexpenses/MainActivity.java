@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtBezeichung;
     private TextView txtBetrag;
     private TextView txtDate;
-    private Button btnOkKategorie;
+    private Button btnOkKategorie,btnAbbrechenKategorie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         txtBetrag = (TextView)findViewById(R.id.txtEuroKategorien);
         txtDate = (TextView)findViewById(R.id.txtDate);
         btnOkKategorie = (Button)findViewById(R.id.btnKategorienOk);
+        btnAbbrechenKategorie = (Button)findViewById(R.id.btnAbbrechen);
+
+        this.btnAbbrechenKategorie.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategorieliste, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

@@ -42,7 +42,7 @@ public class DonutActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_donut );
 
-        text=(EditText) findViewById( R.id.EditText );
+      //  text=(EditText) findViewById( R.id.EditText );
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
         btnSparen=(ImageButton)this.findViewById(R.id.sparenImageButton);
@@ -50,12 +50,15 @@ public class DonutActivity extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
+
         if(message == null){
             message = "2000";
-        }
+        }else{}
 
         try {
             betrag = Integer.parseInt(message);
+
+
         } catch(NumberFormatException nfe) {
         }
 
@@ -82,6 +85,7 @@ public class DonutActivity extends AppCompatActivity {
 
             betrag =  betrag - entryBetrag;
             setBetrag(betrag);
+           // setValue(betrag+"");
         }
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
@@ -89,6 +93,7 @@ public class DonutActivity extends AppCompatActivity {
 
 
         setMax(betrag+"");
+        setValue(betrag+"");
 
         btnHinzu.setOnClickListener(new View.OnClickListener() {
 
@@ -141,47 +146,60 @@ public class DonutActivity extends AppCompatActivity {
     }
     float max;
     public void setMax(String msg){
-
+ //       Log.i("KAKAKASETMAX",msg);
         float value = Float.valueOf(msg);
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         this.donutProgress.setMax( value );
+    //    Log.i("KAKAKASETMAXVALUE",msg);
          max=this.donutProgress.getMax();
         Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
         this.donutProgress.setText( Float.toString( value )+ "€" );
         donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
 
     }
+
     public float getMax(){
         float value = Float.valueOf(max);
         return value;
     }
 
-    public void setValue(View view){
-        value = Float.valueOf(message);
+    public void setValue(String msg){
+        value = Float.valueOf(msg);
+        Log.i("KAKAKA",value+"");
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         float max=this.donutProgress.getMax();
-        text=(EditText) findViewById( R.id.EditText1 );
-        float val = Float.valueOf(text.getText().toString());
+        Log.i("KAKAKAMAX",max+"");
+       // text=(EditText) findViewById( R.id.EditText1 );
+        //float val = Float.valueOf(text.getText().toString());
+        float val = value;
 
         float valueP = (val*100)/max;
         this.donutProgress.setProgress( val );
-        value-=val;
+       // value-=val;
         if(value>=0){
             this.donutProgress.setText( Float.toString( value )+ "€" );
             Toast.makeText(this,Float.toString( valueP )+"%", Toast.LENGTH_LONG).show();
 
             if(valueP >= 75.0){
-                donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
-                donutProgress.setTextColor( Color.rgb(214, 17, 17));
-            }else  if(valueP >= 25.0 && valueP < 50.0){
-                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
-                donutProgress.setTextColor( Color.rgb(255, 247, 0));
-            }else  if(valueP >= 50.0 && valueP < 75.0){
-                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
-                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
-            }else{
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
+//                donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
+//                donutProgress.setTextColor( Color.rgb(214, 17, 17));
+            }else  if(valueP >= 25.0 && valueP < 50.0){
+//                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
+//                donutProgress.setTextColor( Color.rgb(255, 247, 0));
+                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
+                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+            }else  if(valueP >= 50.0 && valueP < 75.0){
+//                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
+//                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
+                donutProgress.setTextColor( Color.rgb(255, 247, 0));
+            }else{
+               // donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
+               // donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
+                donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
+                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }
         }else{
             this.donutProgress.setProgress( max );

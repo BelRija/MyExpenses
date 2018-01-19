@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,16 @@ public class SparenActivity extends Activity {
         setContentView(R.layout.sparen_hinzu_activity);
         txtBetrag=(EditText)this.findViewById(R.id.txtBetrag);
         txtDatum=(EditText)this.findViewById(R.id.txtDatum);
+        txtBezeichnung=(EditText)this.findViewById(R.id.txtBez);
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
+        String betrag = incomingIntent.getStringExtra("betrag");
+        String bez = incomingIntent.getStringExtra("bez");
 
+        if(bez!=null)
+            txtBezeichnung.setText( bez );
+        if(betrag!=null)
+            txtBetrag.setText( betrag );
         if(date!= null)
             txtDatum.setText(date);
 
@@ -44,12 +52,14 @@ public class SparenActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(SparenActivity.this, CalenderActivity.class);
                 intent.putExtra("class", "sparen");
+                intent.putExtra("betrag", txtBetrag.getText().toString());
+                intent.putExtra("bez", txtBezeichnung.getText().toString());
                 startActivity(intent);
             }
 
         });
 
-        txtBezeichnung=(EditText)this.findViewById(R.id.txtBez);
+
 
         btnOK=(Button)this.findViewById(R.id.btnOK);
         btnOK.setOnClickListener(new View.OnClickListener() {

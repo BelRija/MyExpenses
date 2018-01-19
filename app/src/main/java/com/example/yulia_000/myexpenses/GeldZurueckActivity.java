@@ -36,6 +36,9 @@ public class GeldZurueckActivity extends Activity {
 
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
+        String betrag = incomingIntent.getStringExtra("betrag");
+        if(betrag!=null)
+            txtBetrag.setText( betrag );
 
         if(date!= null)
             txtDatum.setText(date);
@@ -45,6 +48,7 @@ public class GeldZurueckActivity extends Activity {
             public void onClick(View view){
                 Intent intent = new Intent(GeldZurueckActivity.this, CalenderActivity.class);
                 intent.putExtra("class", "zurueck");
+                intent.putExtra("betrag", txtBetrag.getText().toString());
                 startActivity(intent);
             }
 

@@ -8,64 +8,62 @@
     android:orientation="vertical"
     tools:context=".DonutActivity">
 
-    <EditText android:id="@+id/EditText1"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberSigned|numberDecimal" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Button android:id="@+id/Button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GO!"
-        android:onClick="setValue"/>
+        <com.example.yulia_000.myexpenses.DonutProgress
+            android:id="@+id/donut_progress"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
 
-    <com.example.yulia_000.myexpenses.DonutProgress
-        android:id="@+id/donut_progress"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_marginTop="70dp"
 
-        custom:donut_finished_color="#00c217"
-        custom:donut_color_red="#df0004"
-        custom:donut_color_green="#00af0c"
-        custom:donut_color_yellow="#ffe600"
-
-        custom:donut_finished_stroke_width="15dp"
-        android:backgroundTint="#13af02"
-        android:backgroundTintMode="add"
-        custom:donut_show_text="true"
-        custom:donut_unfinished_color="@color/primary_material_light"
-        custom:donut_unfinished_stroke_width="15dp"
-        custom:donut_progress="0" />
+            android:backgroundTint="#13af02"
+            android:backgroundTintMode="add"
+            custom:donut_color_green="#00af0c"
+            custom:donut_color_red="#df0004"
+            custom:donut_color_yellow="#ffe600"
+            custom:donut_finished_color="#00c217"
+            custom:donut_finished_stroke_width="15dp"
+            custom:donut_progress="0"
+            custom:donut_show_text="true"
+            custom:donut_unfinished_color="@color/primary_material_light"
+            custom:donut_unfinished_stroke_width="15dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="200dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <ImageButton
-        android:id="@+id/sparenImageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:background="@drawable/round_button"
-        android:src="@drawable/sparen_logo1"
-        android:layout_marginRight="120dp"
-        android:layout_marginTop="70dp"/>
+            android:id="@+id/sparenImageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginRight="120dp"
+            android:background="@drawable/round_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/sparen_logo1" />
 
         <ImageButton
-        android:id="@+id/hinzuImageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
-        android:background="@drawable/round_button"
-        android:src="@drawable/hinzu_logo5"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"/>
+            android:id="@+id/hinzuImageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/round_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/hinzu_logo5" />
 
     </LinearLayout>
 

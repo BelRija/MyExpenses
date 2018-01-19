@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Guthaben">
+        <activity
+            android:name=".Guthaben"
+            android:parentActivityName=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,7 +48,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ZusammenfassungActivity">
+            android:name=".ZusammenfassungActivity"
+            android:parentActivityName=".DonutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -60,28 +63,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListActivity">
+            android:name=".ListActivity"
+            android:parentActivityName=".DonutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".SparenActivity">
+            android:name=".SparenActivity"
+            android:parentActivityName=".ListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".GeldZurueckActivity">
+            android:name=".GeldZurueckActivity"
+            android:parentActivityName=".ListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".PieChartActivity">
+            android:name=".PieChartActivity"
+            android:parentActivityName=".DonutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
