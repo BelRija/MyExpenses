@@ -24,6 +24,7 @@ import java.util.List;
 public class ZusammenfassungActivity extends Activity {
 
     private ListView lv;
+    private List<String> entry_listing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class ZusammenfassungActivity extends Activity {
         EntryRepo entryRepo = new EntryRepo();
         List<Entry> entrys =  entryRepo.getList();
 
-        List<String> entry_listing = new ArrayList<String>();
+        entry_listing = new ArrayList<String>();
 
         for (Entry entry : entrys){
 
@@ -85,4 +86,5 @@ public class ZusammenfassungActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -31,6 +31,8 @@ public class DonutActivity extends AppCompatActivity {
     private DonutProgress donutProgress;
     private EditText text;
     private String message;
+    int betrag = 0;
+    int bb;
     float value;
 
     @Override
@@ -49,7 +51,7 @@ public class DonutActivity extends AppCompatActivity {
         if(message == null){
             message = "2000";
         }
-        int betrag = 0;
+
         try {
             betrag = Integer.parseInt(message);
         } catch(NumberFormatException nfe) {
@@ -76,6 +78,7 @@ public class DonutActivity extends AppCompatActivity {
             Log.d("getDescription",entry.getDescription()+"");
 
             betrag =  betrag - entryBetrag;
+            setBetrag(betrag);
         }
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
@@ -110,26 +113,44 @@ public class DonutActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(DonutActivity.this, PieChartActivity.class);
+                String message = Float.toString(value);
+                intent.putExtra("betrag", DonutActivity.this.getBetrag()+"");
+                Log.i("HAHAHA1",DonutActivity.this.getBetrag()+"");
                 startActivity(intent);
             }
         });
 
     }
 
+    public void setBetrag(int b){
+        this.bb=b;
+    }
+
+    public int getBetrag(){
+        return this.bb;
+    }
+
     public void setDonutProgress(DonutProgress donutProgress) {
         this.donutProgress = donutProgress;
     }
-
+    public DonutProgress getDonutProgress() {
+        return this.donutProgress;
+    }
+    float max;
     public void setMax(String msg){
 
         float value = Float.valueOf(msg);
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         this.donutProgress.setMax( value );
-        float max=this.donutProgress.getMax();
+         max=this.donutProgress.getMax();
         Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
         this.donutProgress.setText( Float.toString( value )+ "€" );
         donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
 
+    }
+    public float getMax(){
+        float value = Float.valueOf(max);
+        return value;
     }
 
     public void setValue(View view){
@@ -189,6 +210,10 @@ public class DonutActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public float getValue(){
+        return value;
     }
 
 
