@@ -25,6 +25,26 @@
         <TableRow>
 
             <TextView
+                android:id="@+id/TextViewBez"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="Bezeichnung: "
+                android:textColor="@android:color/background_dark"
+                ></TextView>
+
+            <EditText
+                android:id="@+id/txtBez"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:text=""></EditText>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
                 android:id="@+id/TextViewB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,25 +81,7 @@
                 android:text=""></EditText>
         </TableRow>
 
-        <TableRow>
 
-            <TextView
-                android:id="@+id/TextViewBez"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:text="Bezeichnung: "
-                android:textColor="@android:color/background_dark"
-                ></TextView>
-
-            <EditText
-                android:id="@+id/txtBez"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="50dp"
-                android:text=""></EditText>
-        </TableRow>
 
         <Button
             android:id="@+id/btnOK"

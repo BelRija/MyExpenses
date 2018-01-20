@@ -67,17 +67,18 @@ public class SparenActivity extends Activity {
             @Override
             public void onClick(View v) {
 // TODO Auto-generated method stub
-                String stringName=txtBetrag.getText().toString();
-                String stringPwd=txtBezeichnung.getText().toString();
+                String stringBetrag=txtBetrag.getText().toString();
+                String stringBez=txtBezeichnung.getText().toString();
+                float betrag=Float.valueOf(stringBetrag);
                 //   if((txtUserName.getText().toString()).equals(txtPassword.getText().toString())){
-                if(stringName.length() > 1 && stringPwd.length() > 3 ){
-                    Toast.makeText(SparenActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SparenActivity.this, Guthaben.class);
-                    String message =stringName;
-                    intent.putExtra(MSG, message);
+                if(stringBez!=null && betrag>0 ){
+                    Toast.makeText(SparenActivity.this, "Gespeichert",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SparenActivity.this, ListActivity.class);
+                    intent.putExtra("betrag", stringBetrag);
+                    intent.putExtra("bez", stringBez);
                     startActivity(intent);
                 } else{
-                    Toast.makeText(SparenActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SparenActivity.this, "Error",Toast.LENGTH_LONG).show();
                 }
 
             }

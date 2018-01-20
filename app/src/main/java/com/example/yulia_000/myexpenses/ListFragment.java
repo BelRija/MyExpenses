@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +31,7 @@ import java.util.List;
 public class ListFragment extends Fragment{
 
     private ImageButton btnHinzu;
+    private ArrayList<String> list=new ArrayList <>(  );
 
     public ListFragment() {   }
 
@@ -77,15 +79,13 @@ public class ListFragment extends Fragment{
         Log.e(LOG_TAG, "error       - Meldung");
 
 
-        String [] listeArray = {
-                "",
-                "Laptop, 200€",
-                "Urlaub, 500€",
-                "Tasche, 60€",
-                "Handy, 50€"
-        };
+        String [] listeArray = {""};
 
-        List<String> aktienListe = new ArrayList<>(Arrays.asList(listeArray));
+        List<String> aktienListe=new ArrayList<>(Arrays.asList(listeArray));
+        Log.i("MAMAMA22", list.toString());
+        if(list!=null){
+
+            aktienListe = list;}
 
         ArrayAdapter <String> aktienlisteAdapter; // Beispieldaten in einer ArrayList
         aktienlisteAdapter = new ArrayAdapter<String>(
@@ -113,6 +113,11 @@ public class ListFragment extends Fragment{
         menu.add( 0,v.getId(),0,"Bearbeiten" );
         menu.add( 0,v.getId(),0,"Löschen" );
 
+    }
+
+    public void setList(ArrayList<String> listArray){
+        this.list=listArray;
+        Log.i("MAMAMAaaa", list.toString());
     }
 
 }
