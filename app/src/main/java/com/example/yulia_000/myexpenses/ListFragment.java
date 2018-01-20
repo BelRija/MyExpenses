@@ -77,7 +77,14 @@ public class ListFragment extends Fragment{
         Log.i(LOG_TAG, "information - Meldung");
         Log.w(LOG_TAG, "warning     - Meldung");
         Log.e(LOG_TAG, "error       - Meldung");
+        String strtext="";
+        Log.i("MAMAMA1222", ""+getArguments());
 
+    if(getArguments() !=null)
+    {strtext=getArguments().getString("name");
+        Log.i("MAMAMA1222", strtext+"  " + getArguments().getString("bez"));
+        setList(strtext,getArguments().getString("bez"));
+    }
 
         String [] listeArray = {""};
 
@@ -92,7 +99,7 @@ public class ListFragment extends Fragment{
                 getActivity(), // Die aktuelle Umgebung (diese Activity)
                 R.layout.list_item, // ID der XML-Layout Datei
                 R.id.list_item, // ID des TextViews
-                aktienListe);
+                list);
 
         View rootView = inflater.inflate(R.layout.list_fragment, container, false);
 
@@ -115,9 +122,12 @@ public class ListFragment extends Fragment{
 
     }
 
-    public void setList(ArrayList<String> listArray){
-        this.list=listArray;
-        Log.i("MAMAMAaaa", list.toString());
+    public void setList(String name, String bez){
+        ArrayList<String>list=new ArrayList <>(  );
+        list.add( " " );
+        list.add(name+","+bez);
+        this.list=list;
+        Log.i("MAMAMAaaaL", list.toString());
     }
 
 }

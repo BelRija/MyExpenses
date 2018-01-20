@@ -56,7 +56,9 @@
                     android:layout_marginLeft="50dp"
                     android:background="@drawable/round_button"
                     android:scaleType="fitXY"
-                    android:src="@drawable/sparen_logo1" />
+                    android:src="@drawable/sparen_logo1"
+                    android:onClick="btnZurueck"
+                    />
 
                 <ImageButton
                     android:id="@+id/hinzuImageButton"
@@ -66,6 +68,7 @@
                     android:background="@drawable/round_button"
                     android:scaleType="fitStart"
                     android:src="@drawable/hinzu_logo5"
+                    android:onClick="btnHinzu"
                    />
             </TableRow>
         </TableLayout>
