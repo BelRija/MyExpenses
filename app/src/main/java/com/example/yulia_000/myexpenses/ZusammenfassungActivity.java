@@ -55,7 +55,6 @@ public class ZusammenfassungActivity extends Activity {
 
         }
 
-
         lv = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -65,6 +64,13 @@ public class ZusammenfassungActivity extends Activity {
 
         lv.setAdapter(arrayAdapter);
 
+    }
+
+    public void filtertList(ArrayList<String>list, String kategorie){
+
+    }
+    public List<String> getList(){
+        return entry_listing;
     }
 
     @Override

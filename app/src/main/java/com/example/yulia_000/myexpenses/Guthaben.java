@@ -27,6 +27,7 @@ public class Guthaben extends Activity{
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
         txtUserName.setText("Hallo "+message.toString()+"!");
+        txtUserName.setText("Ihr aktueller Kontostand:");
     }
 
     public void setValue(View view){

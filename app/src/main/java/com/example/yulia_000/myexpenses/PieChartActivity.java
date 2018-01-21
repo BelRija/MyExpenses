@@ -16,18 +16,27 @@ import com.example.yulia_000.myexpenses.data.model.*;
 import com.example.yulia_000.myexpenses.data.model.Entry;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.mikephil.charting.components.Legend.LegendPosition.BELOW_CHART_LEFT;
+import static com.github.mikephil.charting.components.Legend.LegendPosition.LEFT_OF_CHART;
+import static com.github.mikephil.charting.components.Legend.LegendPosition.RIGHT_OF_CHART;
+import static com.github.mikephil.charting.components.Legend.LegendPosition.RIGHT_OF_CHART_CENTER;
 
 /**
  * Created by Marija on 13.01.2018.
  */
 
-public class PieChartActivity extends AppCompatActivity {
+public class PieChartActivity extends AppCompatActivity implements OnChartValueSelectedListener {
  private DonutActivity donut=new DonutActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +45,7 @@ public class PieChartActivity extends AppCompatActivity {
         PieChart chart = (PieChart) findViewById(R.id.chart);
         Intent intent = getIntent();
         String message = intent.getStringExtra("betrag");
-        Log.i("HAHAHA",message);
+        //Log.i("HAHAHA",message);
         float guthaben=0;
         if(message!=null) {
          guthaben = Float.valueOf(message);}
@@ -56,18 +65,23 @@ public class PieChartActivity extends AppCompatActivity {
                if(entry.getKategory()!=null && k!=null)
                if(entry.getKategory().equals(k)){
                    float betrag = Float.valueOf(entry.getAmount());
-                   if(kats.size()>0){ Log.i("HAHAHA33",""+kats.size());int tmp=1;
+                   if(kats.size()>0){
+
+                       int tmp=1;
                        for(Kategorie kk:kats){
-                           Log.i("HAHAHA55","** "+kk.getName());  tmp=1;
+
                            if(k.equals( kk.getName() )){
-                               Log.i("HAHAHA44","++"+kk.getBetrag());
+
                                kk.setBetrag( kk.getBetrag()+betrag );tmp=0;
-                               Log.i("HAHAHA44","--"+kk.getBetrag());
+
                            }else{}
-                       }if(tmp==1) {kats.add(new Kategorie(k,betrag)); Log.i("HAHAHA77","Dobavil: "+k);}
+                       }if(tmp==1) {
+                           kats.add(new Kategorie(k,betrag));
+
+                       }
                    }
                    else{kats.add(new Kategorie(k,betrag));}
-                   Log.i("HAHAHA22",""+k);
+
                }
            }
         }
@@ -85,14 +99,25 @@ public class PieChartActivity extends AppCompatActivity {
 
 
         PieDataSet set = new PieDataSet(entries, "");
-        PieData data = new PieData(set);
+        set.setValueTextColor( R.color.white );
+
         set.setColors(new int[] {
                 R.color.green, R.color.yellow, R.color.red, R.color.blue,
                 R.color.violet, R.color.orange, R.color.pink, R.color.turkis,
                 R.color.lightblue, R.color.green1, R.color.pink1, R.color.darkblue,
                 R.color.pink2, R.color.orange1, R.color.choco, R.color.kreme}, this);
-        chart.setData(data);
+
+        set.setHighlightEnabled(true);
+        set.setDrawValues(true);
         set.setValueFormatter(new MyValueFormatter());
+        chart.setHighlightPerTapEnabled(true );
+        PieData data = new PieData(set);
+        chart.setData(data);
+        chart.setOnChartValueSelectedListener(this);
+        Legend l=chart.getLegend();
+        l.setPosition(  LEFT_OF_CHART );
+        l.setWordWrapEnabled(true);
+        chart.setCenterText("Gesamt: 500");
         chart.invalidate();
 
     }
@@ -121,4 +146,15 @@ public class PieChartActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onValueSelected(com.github.mikephil.charting.data.Entry e, Highlight h) {
+        Log.i("PROVERKA",""+h.getX());
+        Log.i("PROVERKA1",""+h.getY());
+        Log.i("PROVERKA2",""+h.getAxis());
+    }
+
+    @Override
+    public void onNothingSelected() {
+
+    }
 }

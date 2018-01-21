@@ -18,10 +18,11 @@
         tools:context=".ListFragment">
 
         <TextView
+            android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Eingespart"
+            android:text="Ersparnisse"
             android:textColor="#000000"
             android:textSize="24sp" />
 

@@ -19,6 +19,6 @@ public class MyValueFormatter implements IValueFormatter {
 
     @Override
     public String getFormattedValue(float value, com.github.mikephil.charting.data.Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        return mFormat.format(value) + " %"; // e.g. append a dollar-sign
+        return mFormat.format(value) + " %";
     }
 }

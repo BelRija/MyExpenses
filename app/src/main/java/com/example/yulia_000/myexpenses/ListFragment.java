@@ -31,7 +31,7 @@ import java.util.List;
 public class ListFragment extends Fragment{
 
     private ImageButton btnHinzu;
-    private ArrayList<String> list=new ArrayList <>(  );
+    private ArrayList<String> list=new ArrayList <String>( );
 
     public ListFragment() {   }
 
@@ -40,7 +40,7 @@ public class ListFragment extends Fragment{
         super.onCreate(savedInstanceState);
         // Menü bekannt geben, dadurch kann unser Fragment Menü-Events verarbeiten
         setHasOptionsMenu(true);
-
+        list.add( " " );
     }
 
     @Override
@@ -77,22 +77,18 @@ public class ListFragment extends Fragment{
         Log.i(LOG_TAG, "information - Meldung");
         Log.w(LOG_TAG, "warning     - Meldung");
         Log.e(LOG_TAG, "error       - Meldung");
+
         String strtext="";
         Log.i("MAMAMA1222", ""+getArguments());
 
     if(getArguments() !=null)
-    {strtext=getArguments().getString("name");
+    {
+        strtext=getArguments().getString("name");
         Log.i("MAMAMA1222", strtext+"  " + getArguments().getString("bez"));
-        setList(strtext,getArguments().getString("bez"));
+      //  setList(strtext,getArguments().getString("bez"));
     }
 
-        String [] listeArray = {""};
-
-        List<String> aktienListe=new ArrayList<>(Arrays.asList(listeArray));
         Log.i("MAMAMA22", list.toString());
-        if(list!=null){
-
-            aktienListe = list;}
 
         ArrayAdapter <String> aktienlisteAdapter; // Beispieldaten in einer ArrayList
         aktienlisteAdapter = new ArrayAdapter<String>(
@@ -103,9 +99,9 @@ public class ListFragment extends Fragment{
 
         View rootView = inflater.inflate(R.layout.list_fragment, container, false);
 
-        ListView listView = (ListView) rootView.findViewById(R.id.listview_liste);
-        listView.setAdapter(aktienlisteAdapter);
-        registerForContextMenu(listView);
+      //  ListView listView = (ListView) rootView.findViewById(R.id.listview_liste);
+       // listView.setAdapter(aktienlisteAdapter);
+      //  registerForContextMenu(listView);
 
         return rootView;
 
@@ -122,12 +118,5 @@ public class ListFragment extends Fragment{
 
     }
 
-    public void setList(String name, String bez){
-        ArrayList<String>list=new ArrayList <>(  );
-        list.add( " " );
-        list.add(name+","+bez);
-        this.list=list;
-        Log.i("MAMAMAaaaL", list.toString());
-    }
 
 }
