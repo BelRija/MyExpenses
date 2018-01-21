@@ -52,14 +52,9 @@ public class DonutActivity extends AppCompatActivity {
         message = intent.getStringExtra(Guthaben.MSG);
 
         if(message == null){
-            Log.i("PROVERKA","GUTHABEN");
-            message = "5000";
+            message = "2000";
         }else{}
 
-      /*  if(message==null){
-
-        }
-        */
         try {
             betrag = Integer.parseInt(message);
 

@@ -51,6 +51,7 @@ public class SigninActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
+
                     User user = new User();
                     user.setName(stringName);
                     user.setPassword(stringPwd);

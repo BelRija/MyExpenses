@@ -53,10 +53,10 @@ public class LoginActivity extends Activity {
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
-        if(sharedpreferences.getString("name", "" ) != null){
-            Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
-            startActivity(intent);
-        }
+      //  if(sharedpreferences.getString("name", "" ) != null){
+        //    Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
+          //  startActivity(intent);
+        //}
 
         btnLogin=(Button)this.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new OnClickListener() {
