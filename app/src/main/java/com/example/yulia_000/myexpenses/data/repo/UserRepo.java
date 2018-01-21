@@ -27,6 +27,7 @@ public class UserRepo {
     public static String createTable(){
         return "CREATE TABLE " + User.TABLE  + "("
                 + User.KEY_UserID  + "  INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + User.KEY_Credit + " TEXT, "
                 + User.KEY_Name + " TEXT, "
                 + User.KEY_Password  + " TEXT )";
     }
@@ -35,6 +36,7 @@ public class UserRepo {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
         //values.put(User.KEY_UserID, user.getUserId());
+        //values.put(User.KEY_Credit, user.getCredit());
         values.put(User.KEY_Name, user.getName());
         values.put(User.KEY_Password, user.getPassword());
 
@@ -62,10 +64,27 @@ public class UserRepo {
         if (cursor.moveToFirst()) {
             user = new User();
             user.setUserId(cursor.getInt(cursor.getColumnIndex(user.KEY_UserID)));
+            String credittext = "";
+            try{
+                credittext = cursor.getString(cursor.getColumnIndex(user.KEY_Credit));
+            }
+            catch(Exception e){
+
+            }
+            user.setCredit(credittext);
             user.setName(cursor.getString(cursor.getColumnIndex(user.KEY_Name)));
         }
         return user;
     }
+
+    public void updateUser(int id, String credit){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_Credit, credit);
+        db.update(User.TABLE, values, user.KEY_UserID+"='"+id+"'", null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
 
     public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

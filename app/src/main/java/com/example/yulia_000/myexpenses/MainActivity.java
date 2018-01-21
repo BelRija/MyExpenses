@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategorieliste, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-       // spinner.setOnItemSelectedListener(this);
+        // spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -97,17 +97,17 @@ public class MainActivity extends AppCompatActivity {
         String date = incomingIntent.getStringExtra("date");
         theDate.setText(date);
 
-       // Calendar c = Calendar.getInstance();
-       // int mYear = c.get(Calendar.YEAR);
-       // int mMonth = c.get(Calendar.MONTH);
-       // int mDay = c.get(Calendar.DAY_OF_MONTH);
-       // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
+        // Calendar c = Calendar.getInstance();
+        // int mYear = c.get(Calendar.YEAR);
+        // int mMonth = c.get(Calendar.MONTH);
+        // int mDay = c.get(Calendar.DAY_OF_MONTH);
+        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
 
 
 
 
         btnOkKategorie.setOnClickListener(new OnClickListener(){
-           // String stringKategorie =
+            // String stringKategorie =
             String stringBezeichung = txtBezeichung.getText().toString();
             String stringBetrag = txtBetrag.getText().toString();
             String stringDate = txtDate.getText().toString();
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       theDate.setOnClickListener(new OnClickListener(){
+        theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, CalenderActivity.class);

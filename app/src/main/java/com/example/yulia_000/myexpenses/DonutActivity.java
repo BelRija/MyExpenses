@@ -23,6 +23,7 @@ import com.example.yulia_000.myexpenses.DonutProgress;
 import com.example.yulia_000.myexpenses.data.model.*;
 import com.example.yulia_000.myexpenses.data.model.Entry;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
+import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class DonutActivity extends AppCompatActivity {
     private DonutProgress donutProgress;
     private EditText text;
     private String message;
-    int betrag = 0;
-    int bb;
+    double betrag = 0;
+    double bb;
     float value;
 
     @Override
@@ -51,13 +52,13 @@ public class DonutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
 
-        if(message == null){
-            message = "2000";
-        }else{}
+        UserRepo userRepo = new UserRepo();
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
+
 
         try {
-            betrag = Integer.parseInt(message);
-
+            betrag = Double.parseDouble(tmpuser.getCredit());
 
         } catch(NumberFormatException nfe) {
         }
@@ -65,15 +66,15 @@ public class DonutActivity extends AppCompatActivity {
         EntryRepo entryRepo = new EntryRepo();
 
 //        entryRepo.delete();
-        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+ //       SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
         Log.d("MyApp","I am here");
         Log.d("MyApp",entrys.toString());
 
-        int entryBetrag = 0;
+        double entryBetrag = 0;
         for (Entry entry : entrys){
             try {
-                entryBetrag = Integer.parseInt(entry.getAmount());
+                entryBetrag = Double.parseDouble(entry.getAmount());
             } catch(NumberFormatException nfe) {
             }
             Log.d("getID",entry.getID()+"");
@@ -130,11 +131,11 @@ public class DonutActivity extends AppCompatActivity {
 
     }
 
-    public void setBetrag(int b){
+    public void setBetrag(double b){
         this.bb=b;
     }
 
-    public int getBetrag(){
+    public double getBetrag(){
         return this.bb;
     }
 

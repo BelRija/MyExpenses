@@ -12,10 +12,20 @@ public class User {
         public static final String KEY_UserID = "id";
         public static final String KEY_Name = "Name";
         public static final String KEY_Password = "Password";
+        public static final String KEY_Credit = "Credit";
 
         private Integer ID ;
         private String name;
         private String password ;
+        private String credit ;
+
+        public String getCredit() {
+            return credit;
+        }
+
+        public void setCredit(String credit) {
+            this.credit = credit;
+        }
 
         public Integer getUserId() {
             return ID;
