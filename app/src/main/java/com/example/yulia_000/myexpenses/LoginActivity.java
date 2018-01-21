@@ -70,19 +70,22 @@ public class LoginActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
-
-
-
-                    if(userRepo.isLoggedIn(stringName,stringPwd)){
+                    SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                    User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
+                    Log.i("PROVER",tmpuser.getCredit()+"");
+                    if(userRepo.isLoggedIn(stringName,stringPwd) && tmpuser.getCredit() !=null){
+                        Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
+                        startActivity( intent );
+                    }
+                    else if(userRepo.isLoggedIn(stringName,stringPwd)){
                         Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, Guthaben.class);
-                        String message =stringName;
+                        String message = stringName;
                         intent.putExtra(MSG, message);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();
                     }
-
 
                 } else{
                     Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();

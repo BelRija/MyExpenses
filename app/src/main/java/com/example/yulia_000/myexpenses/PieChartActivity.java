@@ -91,6 +91,9 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
             float betrag = Float.valueOf(k.getBetrag());
 //            if(entry.getKategory().equals(entires[1]))
             guthabenP = (betrag*100)/guthaben;
+            Log.i("LALALA",""+guthabenP);
+            Log.i("LALALA11",""+betrag);
+            Log.i("LALALA22",""+guthaben);
             entries.add(new PieEntry(guthabenP, k.getName()));
 
             Log.i("HAHAHA11",""+k.getName() +"B: "+k.getBetrag());
@@ -110,14 +113,13 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         set.setHighlightEnabled(true);
         set.setDrawValues(true);
         set.setValueFormatter(new MyValueFormatter());
-        chart.setHighlightPerTapEnabled(true );
         PieData data = new PieData(set);
         chart.setData(data);
         chart.setOnChartValueSelectedListener(this);
         Legend l=chart.getLegend();
         l.setPosition(  LEFT_OF_CHART );
         l.setWordWrapEnabled(true);
-        chart.setCenterText("Gesamt: 500");
+       // chart.setCenterText("Gesamt: 500");
         chart.invalidate();
 
     }

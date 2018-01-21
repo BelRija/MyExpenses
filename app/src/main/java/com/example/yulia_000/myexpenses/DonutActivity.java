@@ -23,6 +23,7 @@ import com.example.yulia_000.myexpenses.DonutProgress;
 import com.example.yulia_000.myexpenses.data.model.*;
 import com.example.yulia_000.myexpenses.data.model.Entry;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
+import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class DonutActivity extends AppCompatActivity {
     private DonutProgress donutProgress;
     private EditText text;
     private String message;
-    int betrag = 0;
-    int bb;
+    double betrag = 0;
+    double bb;
     float value;
 
     @Override
@@ -51,13 +52,13 @@ public class DonutActivity extends AppCompatActivity {
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
 
-        if(message == null){
-            message = "2000";
-        }else{}
+        UserRepo userRepo = new UserRepo();
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
 
         try {
-            betrag = Integer.parseInt(message);
-
+            betrag = Double.parseDouble(tmpuser.getCredit());
+            Log.i("PROVERKAbETRAG",betrag+"");
 
         } catch(NumberFormatException nfe) {
         }
@@ -65,15 +66,15 @@ public class DonutActivity extends AppCompatActivity {
         EntryRepo entryRepo = new EntryRepo();
 
 //        entryRepo.delete();
-        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+       // SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
         Log.d("MyApp","I am here");
         Log.d("MyApp",entrys.toString());
 
-        int entryBetrag = 0;
+        double entryBetrag = 0;
         for (Entry entry : entrys){
             try {
-                entryBetrag = Integer.parseInt(entry.getAmount());
+                entryBetrag = Double.parseDouble(entry.getAmount());
             } catch(NumberFormatException nfe) {
             }
             Log.d("getID",entry.getID()+"");
@@ -84,7 +85,7 @@ public class DonutActivity extends AppCompatActivity {
             Log.d("getDescription",entry.getDescription()+"");
 
             betrag =  betrag - entryBetrag;
-            setBetrag(betrag);
+            //setBetrag(betrag);
            // setValue(betrag+"");
         }
 
@@ -92,8 +93,9 @@ public class DonutActivity extends AppCompatActivity {
 
 
 
-        setMax(betrag+"");
-        setValue(betrag+"");
+        //setMax(betrag+"");
+        setMax(tmpuser.getCredit());
+        setValue(betrag+"",tmpuser);
 
         btnHinzu.setOnClickListener(new View.OnClickListener() {
 
@@ -122,28 +124,22 @@ public class DonutActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(DonutActivity.this, PieChartActivity.class);
                 String message = Float.toString(value);
-                intent.putExtra("betrag", DonutActivity.this.getBetrag()+"");
-                Log.i("HAHAHA1",DonutActivity.this.getBetrag()+"");
+                intent.putExtra("betrag", DonutActivity.this.max-DonutActivity.this.betrag+"");
+                Log.i("HAHAHA1",DonutActivity.this.betrag+"");
                 startActivity(intent);
             }
         });
 
     }
 
-    public void setBetrag(int b){
+    public void setBetrag(double b){
         this.bb=b;
     }
 
-    public int getBetrag(){
+    public double getBetrag(){
         return this.bb;
     }
 
-    public void setDonutProgress(DonutProgress donutProgress) {
-        this.donutProgress = donutProgress;
-    }
-    public DonutProgress getDonutProgress() {
-        return this.donutProgress;
-    }
     float max;
     public void setMax(String msg){
  //       Log.i("KAKAKASETMAX",msg);
@@ -152,9 +148,10 @@ public class DonutActivity extends AppCompatActivity {
         this.donutProgress.setMax( value );
     //    Log.i("KAKAKASETMAXVALUE",msg);
          max=this.donutProgress.getMax();
-        Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
+        Log.i("PROVERMAX",max+"");
+     /*   Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
         this.donutProgress.setText( Float.toString( value )+ "€" );
-        donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
+        donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));*/
 
     }
 
@@ -163,43 +160,47 @@ public class DonutActivity extends AppCompatActivity {
         return value;
     }
 
-    public void setValue(String msg){
+    public void setValue(String msg,User user){
         value = Float.valueOf(msg);
-        Log.i("KAKAKA",value+"");
+       // Log.i("KAKAKA",value+"");
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
-        float max=this.donutProgress.getMax();
-        Log.i("KAKAKAMAX",max+"");
+        float max=Float.valueOf(user.getCredit());
+      //  Log.i("KAKAKAMAX",max+"");
        // text=(EditText) findViewById( R.id.EditText1 );
         //float val = Float.valueOf(text.getText().toString());
         float val = value;
-
         float valueP = (val*100)/max;
         this.donutProgress.setProgress( val );
-       // value-=val;
+        Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
+        //value-=val;
         if(value>=0){
             this.donutProgress.setText( Float.toString( value )+ "€" );
             Toast.makeText(this,Float.toString( valueP )+"%", Toast.LENGTH_LONG).show();
 
-            if(valueP >= 75.0){
+            if(valueP >= 75.0){//green
+                Log.i("LALA75",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
-//                donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
+//               donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
 //                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }else  if(valueP >= 25.0 && valueP < 50.0){
-//                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
-//                donutProgress.setTextColor( Color.rgb(255, 247, 0));
-                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
-                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
-            }else  if(valueP >= 50.0 && valueP < 75.0){
-//                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
-//                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+                Log.i("LALA25",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
                 donutProgress.setTextColor( Color.rgb(255, 247, 0));
-            }else{
-               // donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
-               // donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
+          //      donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
+              //  donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+            }else  if(valueP >= 50.0 && valueP < 75.0){
+                Log.i("LALA50",valueP+"");
+               donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
+               donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+             //   donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
+             //   donutProgress.setTextColor( Color.rgb(255, 247, 0));
+            }else {
+                Log.i("LALA",valueP+"");
+              // donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
+             //  donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
-                donutProgress.setTextColor( Color.rgb(214, 17, 17));
+               donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }
         }else{
             this.donutProgress.setProgress( max );

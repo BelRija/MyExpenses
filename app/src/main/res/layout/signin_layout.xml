@@ -34,7 +34,8 @@
                     android:button="@null"
                     android:onClick="onRadioButtonClicked"
                     android:text="Registrieren"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    android:textStyle="normal|bold" />
             </TableRow>
         </RadioGroup>
 
@@ -100,9 +101,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
-            android:width="25dp"
+            android:width="35dp"
             android:text="Registrieren"></Button>
     </TableLayout>
 </RelativeLayout>

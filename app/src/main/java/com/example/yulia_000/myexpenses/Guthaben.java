@@ -39,8 +39,8 @@ public class Guthaben extends Activity{
 
 
         txtUserName.setText("Hallo "+tmpuser.getName().toString()+"!");
-        txtUserName.setText("Hallo "+message.toString()+"!");
-        txtUserName.setText("Ihr aktueller Kontostand:");
+
+        txtUserName.setText(txtUserName.getText()+"\n"+"Ihr aktueller Kontostand:");
     }
 
     public void setValue(View view){
