@@ -8,7 +8,9 @@ import android.util.Log;
 import com.example.yulia_000.myexpenses.app.App;
 
 import com.example.yulia_000.myexpenses.data.model.User;
+import com.example.yulia_000.myexpenses.data.model.Saveup;
 import com.example.yulia_000.myexpenses.data.model.Entry;
+import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 
@@ -35,6 +37,7 @@ public class DBHelper  extends SQLiteOpenHelper {
             //All necessary tables you like to create will create here
             db.execSQL(UserRepo.createTable());
             db.execSQL(EntryRepo.createTable());
+            db.execSQL(SaveupRepo.createTable());
         }
 
         @Override
@@ -44,6 +47,7 @@ public class DBHelper  extends SQLiteOpenHelper {
             // Drop table if existed, all data will be gone!!!
             db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
             db.execSQL("DROP TABLE IF EXISTS " + Entry.TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + Saveup.TABLE);
             onCreate(db);
         }
 

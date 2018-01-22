@@ -33,12 +33,12 @@ public class Guthaben extends Activity{
         Intent intent = getIntent();
         message = intent.getStringExtra(Guthaben.MSG);
 
-        UserRepo userRepo = new UserRepo();
+
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-        User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
 
 
-        txtUserName.setText("Hallo "+tmpuser.getName().toString()+"!");
+
+        txtUserName.setText("Hallo "+sharedpreferences.getString("name","")+"!");
     }
 
     public void setValue(View view){
