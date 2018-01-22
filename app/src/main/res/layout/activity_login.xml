@@ -27,7 +27,8 @@
                     android:button="@null"
                     android:onClick="onRadioButtonClicked"
                     android:text="Login"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/RadioSignup"

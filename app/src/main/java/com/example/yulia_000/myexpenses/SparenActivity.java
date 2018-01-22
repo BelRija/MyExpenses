@@ -30,6 +30,7 @@ public class SparenActivity extends Activity {
     EditText txtDatum;
     EditText txtBezeichnung;
     Button btnOK;
+    String list;
 
 /*  Button btnCancel;
     Button btnReg;*/
@@ -47,13 +48,14 @@ public class SparenActivity extends Activity {
         String date = incomingIntent.getStringExtra("date");
         String betrag = incomingIntent.getStringExtra("betrag");
         String bez = incomingIntent.getStringExtra("bez");
-
+         list = incomingIntent.getStringExtra("list");
         if(bez!=null)
             txtBezeichnung.setText( bez );
         if(betrag!=null)
             txtBetrag.setText( betrag );
         if(date!= null)
             txtDatum.setText(date);
+
 
         txtDatum.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,8 +68,6 @@ public class SparenActivity extends Activity {
             }
 
         });
-
-
 
         btnOK=(Button)this.findViewById(R.id.btnOK);
         btnOK.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +127,8 @@ public class SparenActivity extends Activity {
                     Intent intent = new Intent(SparenActivity.this, ListActivity.class);
                     intent.putExtra("betrag", stringBetrag);
                     intent.putExtra("bez", stringBez);
+                    if(list!=null)
+                        intent.putExtra("list", list.toString());
                     startActivity(intent);
                 } else{
                     Toast.makeText(SparenActivity.this, "Error",Toast.LENGTH_LONG).show();

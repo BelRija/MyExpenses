@@ -16,16 +16,19 @@ public class CalenderActivity extends AppCompatActivity {
 
     private CalendarView mCalenderView;
     private String  message;
-    private String msg,bez,betrag;
+    private String msg,bez,betrag,kategorie;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_layout);
         mCalenderView = (CalendarView)findViewById(R.id.calendarView);
+
         Intent intent = getIntent();
         message = intent.getStringExtra( "class" );
         betrag = intent.getStringExtra( "betrag" );
         bez = intent.getStringExtra( "bez" );
+        kategorie = intent.getStringExtra( "kategorie" );
+
         mCalenderView.setOnDateChangeListener((new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
@@ -46,6 +49,13 @@ public class CalenderActivity extends AppCompatActivity {
                         intent.putExtra("betrag", betrag);
                 }else{
                     intent = new Intent(CalenderActivity.this, MainActivity.class);
+                    Log.i("PROVERKA",""+betrag);
+                    if(betrag!=null)
+                        intent.putExtra("betrag", betrag);
+                    if(bez!=null)
+                        intent.putExtra("bez", bez);
+                    if(kategorie!=null)
+                        intent.putExtra("kategorie", kategorie);
                 }
                 intent.putExtra("date", date);
                 startActivity(intent);

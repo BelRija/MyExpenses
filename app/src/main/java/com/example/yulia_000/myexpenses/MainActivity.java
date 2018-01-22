@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtBetrag;
     private TextView txtDate;
     private Button btnOkKategorie,btnAbbrechenKategorie;
+    private RadioButton einnahme,ausgabe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         txtDate = (TextView)findViewById(R.id.txtDate);
         btnOkKategorie = (Button)findViewById(R.id.btnKategorienOk);
         btnAbbrechenKategorie = (Button)findViewById(R.id.btnAbbrechen);
+        einnahme = (RadioButton)findViewById(R.id.einnahmeButton);
+        ausgabe = (RadioButton)findViewById(R.id.ausgabeButton);
 
         this.btnAbbrechenKategorie.setOnClickListener(new View.OnClickListener() {
 
@@ -96,6 +102,27 @@ public class MainActivity extends AppCompatActivity {
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
         theDate.setText(date);
+        String betrag = incomingIntent.getStringExtra("betrag");
+        String bez = incomingIntent.getStringExtra("bez");
+        String kategorie = incomingIntent.getStringExtra("kategorie");
+        //Log.i("PROVERKA",""+betrag);
+        if(bez!=null)
+            txtBezeichung.setText( bez );
+        if(betrag!=null)
+            txtBetrag.setText( betrag );
+        if(kategorie!= null && spinner!=null){
+            for (int position = 0; position < spinner.getAdapter().getCount(); position++) {
+                if(adapter.getItem(position) !=null) {
+                    //Log.i("PROVERKA",""+kategorie);
+                    if(adapter.getItem(position).equals(kategorie)){
+                    //Log.i("PROVERKA",""+kategorie);
+                        spinner.setSelection(position);
+                        return;
+                    }
+                }
+            }
+        }
+        String stringDate = txtDate.getText().toString();
 
         // Calendar c = Calendar.getInstance();
         // int mYear = c.get(Calendar.YEAR);
@@ -106,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        btnOkKategorie.setOnClickListener(new OnClickListener(){
+        /*btnOkKategorie.setOnClickListener(new OnClickListener(){
             // String stringKategorie =
             String stringBezeichung = txtBezeichung.getText().toString();
             String stringBetrag = txtBetrag.getText().toString();
@@ -132,15 +159,47 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DonutActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
+                String stringBezeichung = txtBezeichung.getText().toString();
+                String stringBetrag = txtBetrag.getText().toString();
+                String stringDate = txtDate.getText().toString();
                 Intent intent = new Intent(MainActivity.this, CalenderActivity.class);
+
+                intent.putExtra("betrag", stringBetrag);
+                intent.putExtra("bez",stringBezeichung);
+                intent.putExtra("kategorie",kategoryText);
+                //Log.i("PROVERKA1",""+kategoryText);
                 startActivity(intent);
             }
         });
+
+    }
+
+    public void btnOK(View view){
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        String stringDate = txtDate.getText().toString();
+        if(txtBezeichung.getText().length()!=0 && txtBetrag.getText().length()!=0 && stringDate.length()!=0){
+            Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
+            EntryRepo entryRepo = new EntryRepo();
+            Entry entry = new Entry();
+            entry.setID(null);
+            entry.setUserID(sharedpreferences.getInt("userId",0));
+            entry.setKategory(kategoryText);
+            entry.setDescription(txtBezeichung.getText().toString());
+            entry.setAmount(txtBetrag.getText().toString());
+            entry.setDate(stringDate);
+            entryRepo.insert(entry);
+
+            Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(MainActivity.this, "Bitte alle Felder ausfüllen!",Toast.LENGTH_LONG).show();
+        }
 
     }
 

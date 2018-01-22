@@ -40,7 +40,7 @@ public class ZusammenfassungActivity extends Activity {
         List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
 
         entry_listing = new ArrayList<String>();
-
+        entry_listing.add("");
         for (Entry entry : entrys){
 
             entry_listing.add(
@@ -55,7 +55,6 @@ public class ZusammenfassungActivity extends Activity {
 
         }
 
-
         lv = (ListView) findViewById(R.id.listView);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
@@ -65,6 +64,13 @@ public class ZusammenfassungActivity extends Activity {
 
         lv.setAdapter(arrayAdapter);
 
+    }
+
+    public void filtertList(ArrayList<String>list, String kategorie){
+
+    }
+    public List<String> getList(){
+        return entry_listing;
     }
 
     @Override
