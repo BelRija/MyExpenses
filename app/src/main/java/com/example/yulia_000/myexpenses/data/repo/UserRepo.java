@@ -57,6 +57,18 @@ public class UserRepo {
         return true;
     }
 
+    public boolean userExist(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String Query = "Select * from User where id = " + id;
+        Cursor cursor = db.rawQuery(Query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
+
     public User getUserByName(String name){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         String Query = "Select * from User where name = '" + name +"'";

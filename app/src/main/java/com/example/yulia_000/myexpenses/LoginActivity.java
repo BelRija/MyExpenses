@@ -32,6 +32,8 @@ public class LoginActivity extends Activity {
     EditText txtPassword;
     Button btnLogin;
     public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Name = "name";
+    public static final String ID = "userId";
     SharedPreferences sharedpreferences;
 
 /*  Button btnCancel;
@@ -52,11 +54,17 @@ public class LoginActivity extends Activity {
 
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
+        int loggedInUserId = sharedpreferences.getInt("userId", 0 );
+        String loggedInUserName = sharedpreferences.getString("name", "" );
+        if(loggedInUserId != 0 && loggedInUserName != null){
+            UserRepo userRepo = new UserRepo();
+            Log.i("Login", loggedInUserName+", "+loggedInUserId);
+            if(userRepo.userExist(loggedInUserId)){
+                Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
+                startActivity(intent);
+            }
 
-      //  if(sharedpreferences.getString("name", "" ) != null){
-        //    Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
-          //  startActivity(intent);
-        //}
+        }
 
         btnLogin=(Button)this.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new OnClickListener() {
@@ -70,22 +78,28 @@ public class LoginActivity extends Activity {
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
-                    SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-                    User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
-                    Log.i("PROVER",tmpuser.getCredit()+"");
-                    if(userRepo.isLoggedIn(stringName,stringPwd) && tmpuser.getCredit() !=null){
-                        Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
-                        startActivity( intent );
-                    }
-                    else if(userRepo.isLoggedIn(stringName,stringPwd)){
+
+
+
+                    if(userRepo.isLoggedIn(stringName,stringPwd)){
+                        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                        User tmpuser = userRepo.getUserByName(stringName);
+                        editor.putInt(ID, tmpuser.getUserId());
+                        editor.putString(Name, tmpuser.getName());
+                        editor.commit();
+
+
                         Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(LoginActivity.this, Guthaben.class);
-                        String message = stringName;
-                        intent.putExtra(MSG, message);
+                        Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
+//                        String message =stringName;
+//                        intent.putExtra(MSG, message);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();
                     }
+
 
                 } else{
                     Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();

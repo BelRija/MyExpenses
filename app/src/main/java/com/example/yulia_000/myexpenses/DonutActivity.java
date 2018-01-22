@@ -43,6 +43,8 @@ public class DonutActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_donut );
 
+
+
       //  text=(EditText) findViewById( R.id.EditText );
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
@@ -213,6 +215,16 @@ public class DonutActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(DonutActivity.this, ZusammenfassungActivity.class);
+            startActivity(intent);
+            return true;
+        }else if(id == R.id.action_logout){
+            SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.clear();
+            editor.commit();
+            finish();
+
+            Intent intent = new Intent(DonutActivity.this, LoginActivity.class);
             startActivity(intent);
             return true;
         }

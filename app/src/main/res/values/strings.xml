@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MeinG€LD+</string>
     <string name="action_settings">Übersicht</string>
+    <string name="action_logout">Abmelden</string>
     <string name="strHintTxt1">Kategorie hinzufügen</string>
 
     <string-array name="kategorieliste">
