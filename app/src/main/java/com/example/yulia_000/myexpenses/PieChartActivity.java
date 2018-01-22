@@ -117,8 +117,8 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         set.setValueTextSize( 10 );
         set.setValueTypeface( Typeface.DEFAULT_BOLD );
         set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-        set.setValueLinePart1OffsetPercentage(50.f);
-        set.setValueLinePart1Length(0.1f);
+        set.setValueLinePart1OffsetPercentage(60.f);
+        set.setValueLinePart1Length(0.2f);
         set.setValueLinePart2Length(0.2f);
         chart.setEntryLabelColor(Color.BLACK);
         //set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);

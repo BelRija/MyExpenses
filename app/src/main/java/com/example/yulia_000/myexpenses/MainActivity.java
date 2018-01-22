@@ -183,20 +183,31 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         String stringDate = txtDate.getText().toString();
         if(txtBezeichung.getText().length()!=0 && txtBetrag.getText().length()!=0 && stringDate.length()!=0){
-            Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
+           // Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
             EntryRepo entryRepo = new EntryRepo();
             Entry entry = new Entry();
-            entry.setID(null);
-            entry.setUserID(sharedpreferences.getInt("userId",0));
-            entry.setKategory(kategoryText);
-            entry.setDescription(txtBezeichung.getText().toString());
-            entry.setAmount(txtBetrag.getText().toString());
-            entry.setDate(stringDate);
-            entryRepo.insert(entry);
 
-            Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this, DonutActivity.class);
-            startActivity(intent);
+            if(einnahme.isChecked()==true){
+                //EA-Marker!!- Datenbank
+                //Summe vergleichen
+
+                UserRepo userRepo = new UserRepo();
+                User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
+
+                    Log.i("PROVERKAbETRAGokB",tmpuser.getCredit()+"");            }
+
+
+            entry.setID(null);
+                entry.setUserID(sharedpreferences.getInt("userId",0));
+                entry.setKategory(kategoryText);
+                entry.setDescription(txtBezeichung.getText().toString());
+                entry.setAmount(txtBetrag.getText().toString());
+                entry.setDate(stringDate);
+                entryRepo.insert(entry);
+
+                Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+                startActivity(intent);
         }else{
             Toast.makeText(MainActivity.this, "Bitte alle Felder ausfüllen!",Toast.LENGTH_LONG).show();
         }
@@ -223,5 +234,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+        einnahme = (RadioButton)findViewById(R.id.einnahmeButton);
+        ausgabe = (RadioButton)findViewById(R.id.ausgabeButton);
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.einnahmeButton:
+                if (checked){
+                    einnahme.setChecked( true );
+                    ausgabe.isPressed();
+                    ausgabe.setChecked( false );
+                }
+                break;
+            case R.id.ausgabeButton:
+                if (checked){
+                    ausgabe.setChecked( true );
+                    einnahme.setChecked( false );
+                }
+                break;
+        }
     }
 }
