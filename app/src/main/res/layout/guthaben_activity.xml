@@ -19,7 +19,7 @@
         android:padding="10dp"
         android:text=" "
         android:textColor="#000"
-        android:textSize="35sp"></TextView>
+        android:textSize="28sp"></TextView>
 
     <EditText
         android:id="@+id/EditText"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="setValue"
-        android:text="GO!" />
+        android:text="Weiter" />
 
 
 </LinearLayout>

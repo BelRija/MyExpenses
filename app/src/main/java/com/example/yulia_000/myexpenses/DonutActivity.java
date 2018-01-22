@@ -162,43 +162,29 @@ public class DonutActivity extends AppCompatActivity {
 
     public void setValue(String msg,User user){
         value = Float.valueOf(msg);
-       // Log.i("KAKAKA",value+"");
-        // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         float max=Float.valueOf(user.getCredit());
-      //  Log.i("KAKAKAMAX",max+"");
-       // text=(EditText) findViewById( R.id.EditText1 );
-        //float val = Float.valueOf(text.getText().toString());
         float val = value;
         float valueP = (val*100)/max;
         this.donutProgress.setProgress( val );
         Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
-        //value-=val;
         if(value>=0){
             this.donutProgress.setText( Float.toString( value )+ "€" );
             Toast.makeText(this,Float.toString( valueP )+"%", Toast.LENGTH_LONG).show();
 
             if(valueP >= 75.0){//green
-                Log.i("LALA75",valueP+"");
+               // Log.i("LALA75",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
-//               donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
-//                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }else  if(valueP >= 25.0 && valueP < 50.0){
-                Log.i("LALA25",valueP+"");
+                //Log.i("LALA25",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
                 donutProgress.setTextColor( Color.rgb(255, 247, 0));
-          //      donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
-              //  donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
             }else  if(valueP >= 50.0 && valueP < 75.0){
-                Log.i("LALA50",valueP+"");
+                //Log.i("LALA50",valueP+"");
                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
-             //   donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
-             //   donutProgress.setTextColor( Color.rgb(255, 247, 0));
             }else {
-                Log.i("LALA",valueP+"");
-              // donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
-             //  donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
+              //  Log.i("LALA",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }

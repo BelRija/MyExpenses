@@ -38,9 +38,9 @@ public class Guthaben extends Activity{
         User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
 
 
-        txtUserName.setText("Hallo "+tmpuser.getName().toString()+"!");
+     //   txtUserName.setText("Hallo "+tmpuser.getName().toString()+"!");
 
-        txtUserName.setText(txtUserName.getText()+"\n"+"Ihr aktueller Kontostand:");
+        txtUserName.setText(txtUserName.getText()+"\n"+"Verfügbare Finanzen:");
     }
 
     public void setValue(View view){

@@ -182,19 +182,24 @@ public class MainActivity extends AppCompatActivity {
     public void btnOK(View view){
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         String stringDate = txtDate.getText().toString();
-        EntryRepo entryRepo = new EntryRepo();
-        Entry entry = new Entry();
-        entry.setID(null);
-        entry.setUserID(sharedpreferences.getInt("userId",0));
-        entry.setKategory(kategoryText);
-        entry.setDescription(txtBezeichung.getText().toString());
-        entry.setAmount(txtBetrag.getText().toString());
-        entry.setDate(stringDate);
-        entryRepo.insert(entry);
+        if(txtBezeichung.getText().length()!=0 && txtBetrag.getText().length()!=0 && stringDate.length()!=0){
+            Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
+            EntryRepo entryRepo = new EntryRepo();
+            Entry entry = new Entry();
+            entry.setID(null);
+            entry.setUserID(sharedpreferences.getInt("userId",0));
+            entry.setKategory(kategoryText);
+            entry.setDescription(txtBezeichung.getText().toString());
+            entry.setAmount(txtBetrag.getText().toString());
+            entry.setDate(stringDate);
+            entryRepo.insert(entry);
 
-        Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(MainActivity.this, DonutActivity.class);
-        startActivity(intent);
+            Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(MainActivity.this, "Bitte alle Felder ausfüllen!",Toast.LENGTH_LONG).show();
+        }
 
     }
 

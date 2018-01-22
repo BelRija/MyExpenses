@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -113,14 +114,22 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         set.setDrawValues(true);
         set.setValueFormatter(new MyValueFormatter());
         set.setValueTextColor( Color.WHITE);
+        set.setValueTextSize( 10 );
+        set.setValueTypeface( Typeface.DEFAULT_BOLD );
+        set.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        set.setValueLinePart1OffsetPercentage(80.f);
+        set.setValueLinePart1Length(0.2f);
+        set.setValueLinePart2Length(0.4f);
+        chart.setEntryLabelColor(Color.BLACK);
+        //set.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
         PieData data = new PieData(set);
+        data.setValueTextColor( Color.WHITE );
         chart.getDescription().setEnabled(false);
         chart.setData(data);
         chart.setOnChartValueSelectedListener(this);
         Legend l=chart.getLegend();
         l.setPosition(  LEFT_OF_CHART );
         l.setWordWrapEnabled(true);
-       // chart.setCenterText("Gesamt: 500");
         chart.invalidate();
 
     }
