@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -102,8 +103,6 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
 
 
         PieDataSet set = new PieDataSet(entries, "");
-        set.setValueTextColor( R.color.white );
-
         set.setColors(new int[] {
                 R.color.green, R.color.yellow, R.color.red, R.color.blue,
                 R.color.violet, R.color.orange, R.color.pink, R.color.turkis,
@@ -113,7 +112,9 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         set.setHighlightEnabled(true);
         set.setDrawValues(true);
         set.setValueFormatter(new MyValueFormatter());
+        set.setValueTextColor( Color.WHITE);
         PieData data = new PieData(set);
+        chart.getDescription().setEnabled(false);
         chart.setData(data);
         chart.setOnChartValueSelectedListener(this);
         Legend l=chart.getLegend();
@@ -151,7 +152,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
     @Override
     public void onValueSelected(com.github.mikephil.charting.data.Entry e, Highlight h) {
         Log.i("PROVERKA",""+h.getX());
-        Log.i("PROVERKA1",""+h.getY());
+        Log.i("PROVERKA1",""+h.getDrawX());
         Log.i("PROVERKA2",""+h.getAxis());
     }
 

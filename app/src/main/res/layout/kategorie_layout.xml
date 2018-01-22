@@ -11,6 +11,41 @@
     tools:showIn="@layout/activity_main">
 
 
+    <RadioGroup
+        android:id="@+id/EA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        >
+
+        <RadioButton
+            android:id="@+id/einnahmeButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="120dp"
+            android:background="@drawable/round_button"
+            android:button="@drawable/einnahme_symbol"
+            android:scaleType="fitXY" />
+
+        <RadioButton
+            android:id="@+id/ausgabeButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:button="@drawable/ausgabe_symbol"
+            android:scaleType="fitXY" />
+
+    </RadioGroup>
+
+
     <TextView
         android:id="@+id/TextViewTitle"
         android:layout_width="wrap_content"
@@ -106,7 +141,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="OK" />
+            android:text="OK"
+            android:onClick="btnOK" />
+
     </LinearLayout>
 
 </LinearLayout>

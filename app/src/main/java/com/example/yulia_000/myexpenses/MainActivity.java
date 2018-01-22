@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -104,8 +105,17 @@ public class MainActivity extends AppCompatActivity {
             txtBezeichung.setText( bez );
         if(betrag!=null)
             txtBetrag.setText( betrag );
-        if(kategorie!= null)
-         
+        if(kategorie!= null && spinner!=null){
+            for (int position = 0; position < spinner.getAdapter().getCount(); position++) {
+                if(adapter.getItem(position) !=null) { Log.i("PROVERKA",""+kategorie);
+                    if(adapter.getItem(position).equals(kategorie)){
+                    Log.i("PROVERKA",""+kategorie);
+                    spinner.setSelection(position);
+                    return;}
+                }
+            }
+        }
+        String stringDate = txtDate.getText().toString();
 
         // Calendar c = Calendar.getInstance();
         // int mYear = c.get(Calendar.YEAR);
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        btnOkKategorie.setOnClickListener(new OnClickListener(){
+        /*btnOkKategorie.setOnClickListener(new OnClickListener(){
             // String stringKategorie =
             String stringBezeichung = txtBezeichung.getText().toString();
             String stringBetrag = txtBetrag.getText().toString();
@@ -142,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, DonutActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         theDate.setOnClickListener(new OnClickListener(){
             @Override
@@ -158,6 +168,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    public void btnOK(View view){
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        String stringDate = txtDate.getText().toString();
+        EntryRepo entryRepo = new EntryRepo();
+        Entry entry = new Entry();
+        entry.setID(null);
+        entry.setUserID(sharedpreferences.getInt("userId",0));
+        entry.setKategory(kategoryText);
+        entry.setDescription(txtBezeichung.getText().toString());
+        entry.setAmount(txtBetrag.getText().toString());
+        entry.setDate(stringDate);
+        entryRepo.insert(entry);
+
+        Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+        startActivity(intent);
 
     }
 

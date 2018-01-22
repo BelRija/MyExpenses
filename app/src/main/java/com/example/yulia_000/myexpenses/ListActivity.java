@@ -48,12 +48,13 @@ public class ListActivity extends AppCompatActivity {
         bez = intent.getStringExtra( "bez" );
         String liste = intent.getStringExtra( "list" );
         if(liste!=null){
-            Log.i("MAMAMAlIstE", liste);
+          //  Log.i("MAMAMAlIstE", liste);
             //list=liste.toArray();
             }
         if(betrag!=null && bez!=null){
         //    addToList(betrag,bez);
             textView.setText( textView.getText()+" : "+betrag+"€" );
+            Log.i("PROVERKAbetrag", betrag+"");
             setList(betrag,bez);
         }
         Log.i("MAMAMAaaaLIST", list.toString());
@@ -85,29 +86,6 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-/*
-    public void addToList(String name, String bez){
-        ArrayList<String>list=new ArrayList <>(  );
-        list.add(name+","+bez);
-
-       // liste.setList( list );
-
-        if (name != null && bez != null) {
-            Log.i("MAMAMAaaa", "GA");
-            Bundle bundle=new Bundle();
-            bundle.putString("name", name);
-            bundle.putString("bez", bez);
-            //set Fragmentclass Arguments
-            Fragment fragobj=new ListFragment();
-            fragobj.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment, fragobj).commit();
-
-        }
-
-    }*/
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,8 +99,4 @@ public class ListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-/*    public void sparenHinzu(View view){
-        Intent intent = new Intent(ListActivity.this, SparenActivity.class);
-        startActivity(intent);
-    }*/
 }
