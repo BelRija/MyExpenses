@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtBetrag;
     private TextView txtDate;
     private Button btnOkKategorie,btnAbbrechenKategorie;
+    private RadioButton einnahme,ausgabe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         txtDate = (TextView)findViewById(R.id.txtDate);
         btnOkKategorie = (Button)findViewById(R.id.btnKategorienOk);
         btnAbbrechenKategorie = (Button)findViewById(R.id.btnAbbrechen);
+        einnahme = (RadioButton)findViewById(R.id.einnahmeButton);
+        ausgabe = (RadioButton)findViewById(R.id.ausgabeButton);
 
         this.btnAbbrechenKategorie.setOnClickListener(new View.OnClickListener() {
 
@@ -100,18 +104,21 @@ public class MainActivity extends AppCompatActivity {
         theDate.setText(date);
         String betrag = incomingIntent.getStringExtra("betrag");
         String bez = incomingIntent.getStringExtra("bez");
-        String kategorie = incomingIntent.getStringExtra("kategorie");Log.i("PROVERKA",""+betrag);
+        String kategorie = incomingIntent.getStringExtra("kategorie");
+        //Log.i("PROVERKA",""+betrag);
         if(bez!=null)
             txtBezeichung.setText( bez );
         if(betrag!=null)
             txtBetrag.setText( betrag );
         if(kategorie!= null && spinner!=null){
             for (int position = 0; position < spinner.getAdapter().getCount(); position++) {
-                if(adapter.getItem(position) !=null) { Log.i("PROVERKA",""+kategorie);
+                if(adapter.getItem(position) !=null) {
+                    //Log.i("PROVERKA",""+kategorie);
                     if(adapter.getItem(position).equals(kategorie)){
-                    Log.i("PROVERKA",""+kategorie);
-                    spinner.setSelection(position);
-                    return;}
+                    //Log.i("PROVERKA",""+kategorie);
+                        spinner.setSelection(position);
+                        return;
+                    }
                 }
             }
         }
@@ -164,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
                 intent.putExtra("betrag", stringBetrag);
                 intent.putExtra("bez",stringBezeichung);
-                intent.putExtra("kategorie",kategoryText);Log.i("PROVERKA1",""+kategoryText);
+                intent.putExtra("kategorie",kategoryText);
+                //Log.i("PROVERKA1",""+kategoryText);
                 startActivity(intent);
             }
         });

@@ -15,114 +15,120 @@
         android:id="@+id/EA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
-        >
-
-        <RadioButton
-            android:id="@+id/einnahmeButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="120dp"
-            android:background="@drawable/round_button"
-            android:button="@drawable/einnahme_symbol"
-            android:scaleType="fitXY" />
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/ausgabeButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="30dp"
-            android:button="@drawable/ausgabe_symbol"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="60dp"
+            android:button="@drawable/wallet_2"
+            android:scaleType="fitXY" />
+
+        <RadioButton
+            android:id="@+id/einnahmeButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/round_button"
+            android:button="@drawable/wallet_1"
             android:scaleType="fitXY" />
 
     </RadioGroup>
 
-
-    <TextView
-        android:id="@+id/TextViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10pt"
-        android:text="Kategorie auswählen:"
-        android:textSize="10pt"></TextView>
-
-    <Spinner
-        android:id="@+id/SpinnerFeedbackType"
-        android:layout_width="214dp"
-        android:layout_height="38dp"
-        android:entries="@array/kategorieliste"></Spinner>
-
-
-    <TextView
-        android:id="@+id/TextViewTitle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bezeichnung:"
-        android:textSize="10pt"
-        tools:layout_marginTop="10pt"></TextView>
-
-    <EditText
-        android:id="@+id/txtBezeichungKategorien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/TextViewTitle3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Betrag:"
-        android:textSize="10pt"
-        tools:layout_marginTop="10pt"></TextView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/txtEuroKategorien"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            tools:hint="Euro" />
+        android:layout_marginLeft="0dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/TextViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:text="€"
-            android:textSize="10pt" />
+            android:layout_marginTop="10pt"
+            android:text="Kategorie auswählen:"
+            android:textSize="10pt"></TextView>
+
+        <Spinner
+            android:id="@+id/SpinnerFeedbackType"
+            android:layout_width="214dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="3dp"
+            android:entries="@array/kategorieliste"></Spinner>
+
+
+        <TextView
+            android:id="@+id/TextViewTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bezeichnung:"
+            android:textSize="10pt"
+            tools:layout_marginTop="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/txtBezeichungKategorien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/TextViewTitle3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Betrag:"
+            android:textSize="10pt"
+            tools:layout_marginTop="10pt"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtEuroKategorien"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                tools:hint="Euro" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="€"
+                android:textSize="10pt" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/TextViewTitle7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datum:"
+            android:textSize="10pt"
+            tools:layout_marginTop="10pt"></TextView>
+
+        <EditText
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/TextViewTitle7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datum:"
-        android:textSize="10pt"
-        tools:layout_marginTop="10pt"></TextView>
-
-    <EditText
-        android:id="@+id/txtDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,6 +139,7 @@
             android:id="@+id/btnAbbrechen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:text="Abbrechen" />
 
@@ -140,9 +147,10 @@
             android:id="@+id/btnKategorienOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
-            android:text="OK"
-            android:onClick="btnOK" />
+            android:onClick="btnOK"
+            android:text="OK" />
 
     </LinearLayout>
 
