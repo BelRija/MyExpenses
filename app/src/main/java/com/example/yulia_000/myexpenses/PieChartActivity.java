@@ -39,12 +39,16 @@ import static com.github.mikephil.charting.components.Legend.LegendPosition.RIGH
  */
 
 public class PieChartActivity extends AppCompatActivity implements OnChartValueSelectedListener {
+
  private DonutActivity donut=new DonutActivity();
+ private  List<PieEntry> entries = new ArrayList<>();
+
+ private PieChart chart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.piechart_activity );
-        PieChart chart = (PieChart) findViewById(R.id.chart);
+        chart = (PieChart) findViewById(R.id.chart);
         Intent intent = getIntent();
         String message = intent.getStringExtra("betrag");
         //Log.i("HAHAHA",message);
@@ -88,7 +92,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
            }
         }
 
-        List<PieEntry> entries = new ArrayList<>();
+
         for(Kategorie k:kats){
             float betrag = Float.valueOf(k.getBetrag());
             String tmp=k.getBetrag()+"";
@@ -166,6 +170,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         Log.i("PROVERKA",""+h.getX());
         Log.i("PROVERKA1",""+h.getDrawX());
         Log.i("PROVERKA2",""+h.getAxis());
+        Log.i("PROVERKA3",""+ e.getData());
     }
 
     @Override
