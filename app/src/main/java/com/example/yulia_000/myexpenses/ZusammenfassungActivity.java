@@ -40,7 +40,7 @@ public class ZusammenfassungActivity extends Activity {
         List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
 
         entry_listing = new ArrayList<String>();
-        entry_listing.add("");
+      //  entry_listing.add("");
         for (Entry entry : entrys){
 
             entry_listing.add(
@@ -48,7 +48,7 @@ public class ZusammenfassungActivity extends Activity {
                     "\nUser ID: "+entry.getUserID()+
                     "\nBeschreibung: "+entry.getDescription()+
                     "\nKategorie: "+entry.getKategory()+
-                    "\nBetrag: "+entry.getAmount()+
+                    "\nBetrag: "+entry.getAmount()+ " €"+
                     "\nDatum: "+entry.getDate()
             );
 

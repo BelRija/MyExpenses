@@ -92,25 +92,32 @@ public class DonutActivity extends AppCompatActivity {
             Log.d("getDescription",entry.getDescription()+"");
 
             betrag =  betrag + entryBetrag;
-            //setBetrag(betrag);
+            Log.i("getBETRAG",betrag+"");
+            setBetrag(betrag);
 
            // setValue(betrag+"");
         }
-        betragBerechnenErsparnisse(betrag);
+       // betragBerechnenErsparnisse(betrag);
 
 
         SaveupRepo saveupRepo = new SaveupRepo();
         List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
         double saveupBetrag = 0;
+
         for (Saveup saveup : saveups) {
             try {
                 saveupBetrag = Double.parseDouble(saveup.getSaveupAmount());
+              //  Log.i("getSaRAG------| ",saveupBetrag+"");
             } catch(NumberFormatException nfe) {
             }
-
-            betrag =  betrag + saveupBetrag;
+            String tmp = saveupBetrag+"";
+            if(tmp.charAt( 0 )=='-'){
+                betrag =  betrag + saveupBetrag*(-1);
+            }else{
+                betrag =  betrag - saveupBetrag;
+            }
         }
-
+        setBetrag(betrag);
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
 
@@ -203,7 +210,7 @@ public class DonutActivity extends AppCompatActivity {
         float max=Float.valueOf(user.getCredit());
         float val = value;
         float valueP = (val*100)/max;
-        this.donutProgress.setProgress( max-val );
+        this.donutProgress.setProgress( val );
         //Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
         DecimalFormat df = new DecimalFormat("0.00");
         if(value>=0){

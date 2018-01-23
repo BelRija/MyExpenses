@@ -107,32 +107,8 @@ public class SparenActivity extends Activity {
                             startActivity(intent);
                         }
 
-//                        else{
-//                            if(stringBetrag == ""){
-//                                txtBetrag.setError( "Bitte füllen Sie dieses Feld aus!" );
-//                            }else if(stringBez ==""){
-//                                txtBezeichnung.setError( "Bitte füllen Sie dieses Feld aus!" );
-//                            }else if(stringDate != ""){
-//                                txtDatum.setError( "Bitte füllen Sie dieses Feld aus!" );
-//                            }
-//
-//                        }
                     }
 
-
-               /* float betrag=Float.valueOf(stringBetrag);
-                //   if((txtUserName.getText().toString()).equals(txtPassword.getText().toString())){
-                if(stringBez!=null && betrag>0 ){
-                    Toast.makeText(SparenActivity.this, "Gespeichert",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SparenActivity.this, ListActivity.class);
-                    intent.putExtra("betrag", stringBetrag);
-                    intent.putExtra("bez", stringBez);
-                    if(list!=null)
-                        intent.putExtra("list", list.toString());
-                    startActivity(intent);
-                } else{
-                    Toast.makeText(SparenActivity.this, "Error",Toast.LENGTH_LONG).show();
-                }*/
         });
     }
 

@@ -93,6 +93,7 @@ public class ListActivity extends AppCompatActivity {
                 tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
                 summe+=tmpbetrag;
             }else{
+
                 tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
                 summe-=tmpbetrag;
             }

@@ -91,8 +91,11 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         List<PieEntry> entries = new ArrayList<>();
         for(Kategorie k:kats){
             float betrag = Float.valueOf(k.getBetrag());
+            String tmp=k.getBetrag()+"";
 //            if(entry.getKategory().equals(entires[1]))
+            Log.i("getTMP",tmp.charAt( 0 )+"");
             guthabenP = (betrag*100)/guthaben;
+            if(tmp.charAt( 0 )=='-') guthabenP*=(-1);
             Log.i("LALALA",""+guthabenP);
             Log.i("LALALA11",""+betrag);
             Log.i("LALALA22",""+guthaben);

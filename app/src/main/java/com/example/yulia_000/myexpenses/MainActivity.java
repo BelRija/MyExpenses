@@ -128,43 +128,6 @@ public class MainActivity extends AppCompatActivity {
         }
         String stringDate = txtDate.getText().toString();
 
-        // Calendar c = Calendar.getInstance();
-        // int mYear = c.get(Calendar.YEAR);
-        // int mMonth = c.get(Calendar.MONTH);
-        // int mDay = c.get(Calendar.DAY_OF_MONTH);
-        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
-
-
-
-
-        /*btnOkKategorie.setOnClickListener(new OnClickListener(){
-            // String stringKategorie =
-            String stringBezeichung = txtBezeichung.getText().toString();
-            String stringBetrag = txtBetrag.getText().toString();
-            String stringDate = txtDate.getText().toString();
-
-
-            @Override
-            public void onClick(View view){
-
-                SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-
-                EntryRepo entryRepo = new EntryRepo();
-                Entry entry = new Entry();
-                entry.setID(null);
-                entry.setUserID(sharedpreferences.getInt("userId",0));
-                entry.setKategory(kategoryText);
-                entry.setDescription(txtBezeichung.getText().toString());
-                entry.setAmount(txtBetrag.getText().toString());
-                entry.setDate(stringDate);
-                entryRepo.insert(entry);
-
-                Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
         theDate.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View view){
@@ -230,15 +193,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.i("PROVERKAbETRAGokB",tmpuser.getCredit()+"");
 
-
-
-//                if(this.einnahme.isChecked()){
-//                    status = "+";
-//                    Log.i("this.einnahme.isChecked","++++++++++++++++++++++++++++++++++");
-//                }else{
-//                    Log.i("this.ausgabe.isChecked","-----------------------------------");
-//                    status = "-";
-//                }
                 EntryRepo entryRepo = new EntryRepo();
                 Entry entry = new Entry();
                 entry.setID(null);
@@ -280,27 +234,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    public void onRadioButtonClicked(View view) {
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//        einnahme = (RadioButton)findViewById(R.id.einnahmeButton);
-//        ausgabe = (RadioButton)findViewById(R.id.ausgabeButton);
-//
-//        // Check which radio button was clicked
-//        switch(view.getId()) {
-//            case R.id.einnahmeButton:
-//                if (checked){
-//                    einnahme.setChecked( true );
-//                    ausgabe.isPressed();
-//                    ausgabe.setChecked( false );
-//                }
-//                break;
-//            case R.id.ausgabeButton:
-//                if (checked){
-//                    ausgabe.setChecked( true );
-//                    einnahme.setChecked( false );
-//                }
-//                break;
-//        }
-//    }
 }
