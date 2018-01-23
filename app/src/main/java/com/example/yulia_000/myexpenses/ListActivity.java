@@ -57,7 +57,6 @@ public class ListActivity extends AppCompatActivity {
         SaveupRepo saveupRepo = new SaveupRepo();
 
 
-
 //        entryRepo.delete();
         //       SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
@@ -77,6 +76,7 @@ public class ListActivity extends AppCompatActivity {
 
 
 
+
             saveup_listing.add(
                     saveup.getSaveupDescription()+", "+saveup.getSaveupAmount()+" €"
             );
@@ -90,12 +90,7 @@ public class ListActivity extends AppCompatActivity {
                 saveup_listing );
 
         lv.setAdapter(arrayAdapter);
-
-
-
-
-
-
+        registerForContextMenu(lv);
 
 
         btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);

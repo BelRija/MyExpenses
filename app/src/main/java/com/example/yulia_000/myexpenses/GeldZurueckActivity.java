@@ -83,7 +83,7 @@ public class GeldZurueckActivity extends Activity {
                     saveup.setID(null);
                     saveup.setUserID(sharedpreferences.getInt("userId", 0));
                     saveup.setSaveupDescription("zurückgebucht");
-                    saveup.setSaveupAmount(stringBetrag);
+                    saveup.setSaveupAmount("-"+stringBetrag);
                     saveup.setSaveupDate(stringDate);
                     saveupRepo.insert(saveup);
 

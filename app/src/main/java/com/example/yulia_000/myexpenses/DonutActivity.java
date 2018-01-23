@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.example.yulia_000.myexpenses.DonutProgress;
 import com.example.yulia_000.myexpenses.data.model.*;
 import com.example.yulia_000.myexpenses.data.model.Entry;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
+import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.util.List;
@@ -88,15 +90,14 @@ public class DonutActivity extends AppCompatActivity {
 
             betrag =  betrag - entryBetrag;
             //setBetrag(betrag);
+            betragBerechnenErsparnisse(betrag);
            // setValue(betrag+"");
         }
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
 
-
-
         //setMax(betrag+"");
-        setMax(tmpuser.getCredit());
+        setMax(tmpuser.getCredit()); Log.i("getBetragAsFloat",getBetrag()+"");
         setValue(betrag+"",tmpuser);
 
         btnHinzu.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +135,24 @@ public class DonutActivity extends AppCompatActivity {
 
     }
 
+    public void betragBerechnenErsparnisse(double gesamtbetrag){
+        SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+        SaveupRepo saveupRepo = new SaveupRepo();
+        List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
+        float tmpbetrag=0;
+        for (Saveup saveup : saveups){
+            char flag=saveup.getSaveupAmount().charAt( 0 ); // + or -
+            if(flag=='+'){
+                tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
+                gesamtbetrag-=tmpbetrag;
+            }else{
+                tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
+                gesamtbetrag+=tmpbetrag;
+            }
+            this.betrag=gesamtbetrag;
+            Log.i("getBetraisse",gesamtbetrag+"");}
+    }
+
     public void setBetrag(double b){
         this.bb=b;
     }
@@ -144,11 +163,9 @@ public class DonutActivity extends AppCompatActivity {
 
     float max;
     public void setMax(String msg){
- //       Log.i("KAKAKASETMAX",msg);
         float value = Float.valueOf(msg);
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         this.donutProgress.setMax( value );
-    //    Log.i("KAKAKASETMAXVALUE",msg);
          max=this.donutProgress.getMax();
         Log.i("PROVERMAX",max+"");
      /*   Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
@@ -179,12 +196,13 @@ public class DonutActivity extends AppCompatActivity {
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
             }else  if(valueP >= 25.0 && valueP < 50.0){
                 //Log.i("LALA25",valueP+"");
-                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
-                donutProgress.setTextColor( Color.rgb(255, 247, 0));
+                donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
+                donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
             }else  if(valueP >= 50.0 && valueP < 75.0){
                 //Log.i("LALA50",valueP+"");
-               donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
-               donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
+                donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
+                donutProgress.setTextColor( Color.rgb(255, 247, 0));
+
             }else {
               //  Log.i("LALA",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
