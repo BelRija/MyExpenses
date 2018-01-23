@@ -150,7 +150,8 @@ public class DonutActivity extends AppCompatActivity {
                 gesamtbetrag+=tmpbetrag;
             }
             this.betrag=gesamtbetrag;
-            Log.i("getBetraisse",gesamtbetrag+"");}
+            Log.i("getBetraisse",gesamtbetrag+"");
+        }
     }
 
     public void setBetrag(double b){
