@@ -53,14 +53,14 @@ public class ListFragment extends Fragment{
         // Wir prüfen, ob Menü-Element mit der ID "action_daten_aktualisieren"
         // ausgewählt wurde und geben eine Meldung aus
         int id = item.getItemId();
-        if (id == R.id.action_daten_aktualisieren) {
+        /*if (id == R.id.action_daten_aktualisieren) {
             Toast.makeText(getActivity(), "Hallo!!!", Toast.LENGTH_LONG).show();
             return true;
         }
         else if (id == R.id.action_msg) {
             Toast.makeText(getActivity(), "I am here!!!", Toast.LENGTH_LONG).show();
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
