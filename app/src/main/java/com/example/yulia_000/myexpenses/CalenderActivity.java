@@ -47,8 +47,19 @@ public class CalenderActivity extends AppCompatActivity {
                     intent = new Intent(CalenderActivity.this, GeldZurueckActivity.class);
                     if(betrag!=null)
                         intent.putExtra("betrag", betrag);
-                }else{
+
+                }else if(message != null && message.equals("ausgaben")){
                     intent = new Intent(CalenderActivity.this, MainActivity.class);
+                    Log.i("PROVERKA",""+betrag);
+                    if(betrag!=null)
+                        intent.putExtra("betrag", betrag);
+                    if(bez!=null)
+                        intent.putExtra("bez", bez);
+                    if(kategorie!=null)
+                        intent.putExtra("kategorie", kategorie);
+
+                }else{
+                    intent = new Intent(CalenderActivity.this, EinnahmeActivity.class);
                     Log.i("PROVERKA",""+betrag);
                     if(betrag!=null)
                         intent.putExtra("betrag", betrag);
@@ -61,5 +72,6 @@ public class CalenderActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }));
+        
     }
 }

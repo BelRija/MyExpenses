@@ -28,6 +28,7 @@ import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DonutActivity extends AppCompatActivity {
@@ -77,6 +78,7 @@ public class DonutActivity extends AppCompatActivity {
         Log.d("MyApp",entrys.toString());
 
         double entryBetrag = 0;
+
         for (Entry entry : entrys){
             try {
                 entryBetrag = Double.parseDouble(entry.getAmount());
@@ -89,12 +91,27 @@ public class DonutActivity extends AppCompatActivity {
             Log.d("getKategory",entry.getKategory()+"");
             Log.d("getDescription",entry.getDescription()+"");
 
-            betrag =  betrag - entryBetrag;
+            betrag =  betrag + entryBetrag;
             //setBetrag(betrag);
 
            // setValue(betrag+"");
         }
         betragBerechnenErsparnisse(betrag);
+
+
+        SaveupRepo saveupRepo = new SaveupRepo();
+        List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
+        double saveupBetrag = 0;
+        for (Saveup saveup : saveups) {
+            try {
+                saveupBetrag = Double.parseDouble(saveup.getSaveupAmount());
+            } catch(NumberFormatException nfe) {
+            }
+
+            betrag =  betrag + saveupBetrag;
+        }
+
+
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
 
         //setMax(betrag+"");
@@ -169,6 +186,11 @@ public class DonutActivity extends AppCompatActivity {
         // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         this.donutProgress.setMax( value );
          max=this.donutProgress.getMax();
+        Log.i("PROVERMAX",max+"");
+     /*   Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
+        this.donutProgress.setText( Float.toString( value )+ "€" );
+        donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));*/
+
     }
 
     public float getMax(){
@@ -192,12 +214,16 @@ public class DonutActivity extends AppCompatActivity {
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
             }else  if(valueP >= 25.0 && valueP < 50.0){
+                //Log.i("LALA25",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
                 donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
             }else  if(valueP >= 50.0 && valueP < 75.0){
+                //Log.i("LALA50",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
                 donutProgress.setTextColor( Color.rgb(255, 247, 0));
+
             }else {
+              //  Log.i("LALA",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }
