@@ -74,9 +74,8 @@ public class ListActivity extends AppCompatActivity {
 
         float tmpbetrag=0;
         for (Saveup saveup : saveups){
-
+       // for(int i=saveups.size()-1;i>1;i--){
           //  addToList(saveup.getSaveupDescription(), saveup.getSaveupAmount());
-
 
             Log.d("getID",saveup.getID()+"");
             Log.d("getUserID",saveup.getUserID()+"");
@@ -84,9 +83,8 @@ public class ListActivity extends AppCompatActivity {
             Log.d("getDate",saveup.getSaveupDate()+"");
             Log.d("getDescription",saveup.getSaveupDescription()+"");
 
-            Log.i("getLabel",txtLabel.getText().toString()+"");
             saveup_listing.add(
-                    saveup.getSaveupAmount()+" €"+" | "+ saveup.getSaveupDescription()+" | "+saveup.getSaveupDate()
+                    saveup.getSaveupDate()+": "+saveup.getSaveupAmount()+" €"+" | "+ saveup.getSaveupDescription()
             );
 
             char flag=saveup.getSaveupAmount().charAt( 0 ); // + or -
@@ -98,14 +96,20 @@ public class ListActivity extends AppCompatActivity {
                 summe-=tmpbetrag;
             }
 
-        }txtLabel.setText( txtLabel.getText()+""+df.format(summe)+"€" );
+        }
+        txtLabel.setText( txtLabel.getText()+""+df.format(summe)+"€" );
+
+       ArrayList<String> saveup_list = new ArrayList<String>();
+       for(int i=saveup_listing.size()-1;i>=0;i--){
+           saveup_list.add(saveup_listing.get(i));
+       }
 
         lv = (ListView) findViewById(R.id.listview_liste);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                saveup_listing );
+                saveup_list );
 
         lv.setAdapter(arrayAdapter);
         registerForContextMenu(lv);
