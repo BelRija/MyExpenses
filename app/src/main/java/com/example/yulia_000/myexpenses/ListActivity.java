@@ -23,12 +23,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.yulia_000.myexpenses.data.model.*;
 import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +46,16 @@ public class ListActivity extends AppCompatActivity {
     private ArrayList<String>list=new ArrayList <>(  );
     private List<String> saveup_listing;
     private ListView lv;
+    private TextView txtLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_activity);
+
+        btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
+        btnZurueck=(ImageButton)this.findViewById(R.id.sparenImageButton);
+        txtLabel=(TextView)this.findViewById(R.id.textViewLabel);
 
         UserRepo userRepo = new UserRepo();
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
@@ -57,17 +64,18 @@ public class ListActivity extends AppCompatActivity {
         SaveupRepo saveupRepo = new SaveupRepo();
 
 
-
 //        entryRepo.delete();
         //       SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
 
         saveup_listing = new ArrayList<String>();
+        float summe=0;
+        DecimalFormat df = new DecimalFormat("0.00");
 
+        float tmpbetrag=0;
         for (Saveup saveup : saveups){
-
+       // for(int i=saveups.size()-1;i>1;i--){
           //  addToList(saveup.getSaveupDescription(), saveup.getSaveupAmount());
-
 
             Log.d("getID",saveup.getID()+"");
             Log.d("getUserID",saveup.getUserID()+"");
@@ -75,63 +83,36 @@ public class ListActivity extends AppCompatActivity {
             Log.d("getDate",saveup.getSaveupDate()+"");
             Log.d("getDescription",saveup.getSaveupDescription()+"");
 
-
-
             saveup_listing.add(
-                    saveup.getSaveupDescription()+", "+saveup.getSaveupAmount()+" €"
+                    saveup.getSaveupDate()+": "+saveup.getSaveupAmount()+" €"+" | "+ saveup.getSaveupDescription()
             );
+
+            char flag=saveup.getSaveupAmount().charAt( 0 ); // + or -
+            if(flag=='+'){
+                tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
+                summe+=tmpbetrag;
+            }else{
+                tmpbetrag = Float.valueOf(saveup.getSaveupAmount().substring( 1 ));
+                summe-=tmpbetrag;
+            }
+
         }
+        txtLabel.setText( txtLabel.getText()+""+df.format(summe)+"€" );
+
+       ArrayList<String> saveup_list = new ArrayList<String>();
+       for(int i=saveup_listing.size()-1;i>=0;i--){
+           saveup_list.add(saveup_listing.get(i));
+       }
 
         lv = (ListView) findViewById(R.id.listview_liste);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                saveup_listing );
+                saveup_list );
 
         lv.setAdapter(arrayAdapter);
-
-
-
-
-
-
-
-
-        btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
-
-   /*     btnHinzu.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ListActivity.this, SparenActivity.class);
-                startActivity(intent);
-
-            }
-        });*/
-
-        btnZurueck=(ImageButton)this.findViewById(R.id.sparenImageButton);
-
-/*        btnZurueck.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ListActivity.this, GeldZurueckActivity.class);
-                startActivity(intent);
-
-            }
-        });*/
-
-        /*Intent intent = getIntent();
-        betrag = intent.getStringExtra( "betrag" );
-        bez = intent.getStringExtra( "bez" );
-        Log.i("MAMAMAaaa", betrag+"  "+bez);
-        if(betrag!=null && bez!=null)
-            addToList(betrag,bez);
-*/
-
+        registerForContextMenu(lv);
     }
 
     public void setBetrag(double b){
