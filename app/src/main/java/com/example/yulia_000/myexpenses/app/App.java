@@ -6,6 +6,7 @@ package com.example.yulia_000.myexpenses.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.yulia_000.myexpenses.data.DatabaseManager;
 import com.example.yulia_000.myexpenses.data.DBHelper;
@@ -20,6 +21,7 @@ public class  App extends Application {
     @Override
     public void onCreate()
     {
+        Log.d("SaveupRepo","init++++++++++++++++++++++++++++++++++++++++++++++++");
         super.onCreate();
         context = this.getApplicationContext();
         dbHelper = new DBHelper();

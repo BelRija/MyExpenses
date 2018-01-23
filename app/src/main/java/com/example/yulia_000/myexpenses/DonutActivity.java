@@ -27,6 +27,7 @@ import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DonutActivity extends AppCompatActivity {
@@ -76,6 +77,7 @@ public class DonutActivity extends AppCompatActivity {
         Log.d("MyApp",entrys.toString());
 
         double entryBetrag = 0;
+
         for (Entry entry : entrys){
             try {
                 entryBetrag = Double.parseDouble(entry.getAmount());
@@ -88,11 +90,25 @@ public class DonutActivity extends AppCompatActivity {
             Log.d("getKategory",entry.getKategory()+"");
             Log.d("getDescription",entry.getDescription()+"");
 
-            betrag =  betrag - entryBetrag;
+            betrag =  betrag + entryBetrag;
             //setBetrag(betrag);
             betragBerechnenErsparnisse(betrag);
            // setValue(betrag+"");
         }
+
+
+        SaveupRepo saveupRepo = new SaveupRepo();
+        List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
+        double saveupBetrag = 0;
+        for (Saveup saveup : saveups) {
+            try {
+                saveupBetrag = Double.parseDouble(saveup.getSaveupAmount());
+            } catch(NumberFormatException nfe) {
+            }
+
+            betrag =  betrag + saveupBetrag;
+        }
+
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
 

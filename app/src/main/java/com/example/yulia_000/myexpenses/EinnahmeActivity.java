@@ -1,5 +1,6 @@
 package com.example.yulia_000.myexpenses;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,7 +34,7 @@ import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class EinnahmeActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView theDate;
@@ -48,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.einnahme_layout);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        Log.i("Ausgabeactivity","IN");
+        Log.i("EINNAHMENAKTIVITY","IN");
+
 
         theDate = (TextView)findViewById(R.id.txtDate);
         // txtKategorien = ((Spinner)findViewById(R.id.SpinnerFeedbackType));
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
+                Intent intent = new Intent(EinnahmeActivity.this, DonutActivity.class);
                 startActivity(intent);
             }
         });
@@ -86,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
                                        int position, long id) {
                 Object item = adapterView.getItemAtPosition(position);
                 if (item != null) {
-                    Toast.makeText(MainActivity.this, item.toString(),
+                    Toast.makeText(EinnahmeActivity.this, item.toString(),
                             Toast.LENGTH_SHORT).show();
                     kategoryText = item.toString();
                 }
-                Toast.makeText(MainActivity.this, "Selected",
+                Toast.makeText(EinnahmeActivity.this, "Selected",
                         Toast.LENGTH_SHORT).show();
 
             }
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 if(adapter.getItem(position) !=null) {
                     //Log.i("PROVERKA",""+kategorie);
                     if(adapter.getItem(position).equals(kategorie)){
-                    //Log.i("PROVERKA",""+kategorie);
+                        //Log.i("PROVERKA",""+kategorie);
                         spinner.setSelection(position);
                         return;
                     }
@@ -171,9 +173,8 @@ public class MainActivity extends AppCompatActivity {
                 String stringBezeichung = txtBezeichung.getText().toString();
                 String stringBetrag = txtBetrag.getText().toString();
                 String stringDate = txtDate.getText().toString();
-                Intent intent = new Intent(MainActivity.this, CalenderActivity.class);
-
-                intent.putExtra("class", "ausgaben");
+                Intent intent = new Intent(EinnahmeActivity.this, CalenderActivity.class);
+                intent.putExtra("class", "einnahmen");
                 intent.putExtra("betrag", stringBetrag);
                 intent.putExtra("bez",stringBezeichung);
                 intent.putExtra("kategorie",kategoryText);
@@ -196,20 +197,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ausgabeButton:
                 if (checked)
                     ausgabe.setTypeface(null, Typeface.NORMAL);
-                    ausgabe.setTypeface(null, Typeface.BOLD);
+                ausgabe.setTypeface(null, Typeface.BOLD);
                 Log.i("this.ausgabe.isChecked","-----------------------------------");
 
                 Log.i("this.einnahme.isChecked","Ich bin in minus, wieso auch immer");
+                Intent intent = new Intent(EinnahmeActivity.this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.einnahmeButton:
                 if (checked)
                     einnahme.setTypeface(null, Typeface.NORMAL);
-                    einnahme.setTypeface(null, Typeface.BOLD);
-                    Log.i("this.einnahme.isChecked","++++++++++++++++++++++++++++++++++");
+                einnahme.setTypeface(null, Typeface.BOLD);
+                Log.i("this.einnahme.isChecked","++++++++++++++++++++++++++++++++++");
 
-                    Log.i("this.einnahme.isChecked","ich bin da");
-                    Intent intent = new Intent(MainActivity.this, EinnahmeActivity.class);
-                    startActivity(intent);
+                Log.i("this.einnahme.isChecked","ich bin da");
+
                 break;
         }
     }
@@ -218,42 +220,29 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         String stringDate = txtDate.getText().toString();
         if(txtBezeichung.getText().length()!=0 && txtBetrag.getText().length()!=0 && stringDate.length()!=0){
-           // Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
+            UserRepo userRepo = new UserRepo();
+            User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
+
+            Log.i("PROVERKAbETRAGokB",tmpuser.getCredit()+"");
 
 
-           // if(einnahme.isChecked()==true){
-                //EA-Marker!!- Datenbank
-                //Summe vergleichen
+            EntryRepo entryRepo = new EntryRepo();
+            Entry entry = new Entry();
+            entry.setID(null);
+            entry.setUserID(sharedpreferences.getInt("userId",0));
+            entry.setKategory(kategoryText);
+            entry.setDescription(txtBezeichung.getText().toString());
+            entry.setAmount("+"+txtBetrag.getText().toString());
+            entry.setDate(stringDate);
+            entryRepo.insert(entry);
 
-                UserRepo userRepo = new UserRepo();
-                User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
+            Log.i("EINNAHMENAKTIVITY","IN: "+entry.getAmount());
 
-                    Log.i("PROVERKAbETRAGokB",tmpuser.getCredit()+"");
-
-
-
-//                if(this.einnahme.isChecked()){
-//                    status = "+";
-//                    Log.i("this.einnahme.isChecked","++++++++++++++++++++++++++++++++++");
-//                }else{
-//                    Log.i("this.ausgabe.isChecked","-----------------------------------");
-//                    status = "-";
-//                }
-                EntryRepo entryRepo = new EntryRepo();
-                Entry entry = new Entry();
-                entry.setID(null);
-                entry.setUserID(sharedpreferences.getInt("userId",0));
-                entry.setKategory(kategoryText);
-                entry.setDescription(txtBezeichung.getText().toString());
-                entry.setAmount("-"+txtBetrag.getText().toString());
-                entry.setDate(stringDate);
-                entryRepo.insert(entry);
-
-                Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
-                startActivity(intent);
+            Toast.makeText(EinnahmeActivity.this, "Einnahme erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(EinnahmeActivity.this, DonutActivity.class);
+            startActivity(intent);
         }else{
-            Toast.makeText(MainActivity.this, "Bitte alle Felder ausfüllen!",Toast.LENGTH_LONG).show();
+            Toast.makeText(EinnahmeActivity.this, "Bitte alle Felder ausfüllen!",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -279,28 +268,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public void onRadioButtonClicked(View view) {
-//        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-//        einnahme = (RadioButton)findViewById(R.id.einnahmeButton);
-//        ausgabe = (RadioButton)findViewById(R.id.ausgabeButton);
-//
-//        // Check which radio button was clicked
-//        switch(view.getId()) {
-//            case R.id.einnahmeButton:
-//                if (checked){
-//                    einnahme.setChecked( true );
-//                    ausgabe.isPressed();
-//                    ausgabe.setChecked( false );
-//                }
-//                break;
-//            case R.id.ausgabeButton:
-//                if (checked){
-//                    ausgabe.setChecked( true );
-//                    einnahme.setChecked( false );
-//                }
-//                break;
-//        }
-//    }
 }
