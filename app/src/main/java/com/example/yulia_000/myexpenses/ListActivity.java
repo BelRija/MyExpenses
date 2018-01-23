@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -132,30 +133,6 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void addToList(String name, String bez){
-//        Log.i("addToList", name+", "+bez);
-//        list.add(name+","+bez);
-//
-//       // liste.setList( list );
-//
-//        if (name != null && bez != null) {
-//            Log.i("MAMAMAaaa", "GA");
-//        Bundle bundle=new Bundle();
-//        bundle.putString("name", name);
-//        bundle.putString("bez", bez);
-//        //set Fragmentclass Arguments
-//
-//        fragobj.setArguments(bundle);
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.fragment, fragobj).commit();
-//
-//        }
-
-    }
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -163,13 +140,16 @@ public class ListActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
-
         return super.onOptionsItemSelected(item);
     }
 
-/*    public void sparenHinzu(View view){
-        Intent intent = new Intent(ListActivity.this, SparenActivity.class);
-        startActivity(intent);
-    }*/
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu( menu,v,menuInfo );
+        menu.setHeaderTitle( "Aktion auswählen" );
+        menu.add( 0,v.getId(),0,"Bearbeiten" );
+        menu.add( 0,v.getId(),0,"Löschen" );
+
+    }
+
 }

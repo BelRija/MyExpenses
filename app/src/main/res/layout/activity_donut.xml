@@ -28,11 +28,11 @@
             custom:donut_color_red="#df0004"
             custom:donut_color_yellow="#ffe600"
             custom:donut_finished_color="#00c217"
-            custom:donut_finished_stroke_width="15dp"
+            custom:donut_finished_stroke_width="35dp"
             custom:donut_progress="0"
             custom:donut_show_text="true"
             custom:donut_unfinished_color="@color/primary_material_light"
-            custom:donut_unfinished_stroke_width="15dp" />
+            custom:donut_unfinished_stroke_width="35dp" />
     </LinearLayout>
 
     <LinearLayout

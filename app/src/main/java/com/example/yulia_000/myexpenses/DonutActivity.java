@@ -27,6 +27,7 @@ import com.example.yulia_000.myexpenses.data.repo.EntryRepo;
 import com.example.yulia_000.myexpenses.data.repo.SaveupRepo;
 import com.example.yulia_000.myexpenses.data.repo.UserRepo;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,9 +93,10 @@ public class DonutActivity extends AppCompatActivity {
 
             betrag =  betrag + entryBetrag;
             //setBetrag(betrag);
-            betragBerechnenErsparnisse(betrag);
+
            // setValue(betrag+"");
         }
+        betragBerechnenErsparnisse(betrag);
 
 
         SaveupRepo saveupRepo = new SaveupRepo();
@@ -201,14 +203,14 @@ public class DonutActivity extends AppCompatActivity {
         float max=Float.valueOf(user.getCredit());
         float val = value;
         float valueP = (val*100)/max;
-        this.donutProgress.setProgress( val );
-        Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
+        this.donutProgress.setProgress( max-val );
+        //Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
+        DecimalFormat df = new DecimalFormat("0.00");
         if(value>=0){
-            this.donutProgress.setText( Float.toString( value )+ "€" );
+            this.donutProgress.setText(  df.format(value) + " €" );
             Toast.makeText(this,Float.toString( valueP )+"%", Toast.LENGTH_LONG).show();
 
-            if(valueP >= 75.0){//green
-               // Log.i("LALA75",valueP+"");
+            if(valueP >= 75.0){
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
             }else  if(valueP >= 25.0 && valueP < 50.0){
@@ -227,7 +229,7 @@ public class DonutActivity extends AppCompatActivity {
             }
         }else{
             this.donutProgress.setProgress( max );
-            this.donutProgress.setText( Float.toString( value )+ "€" );
+            this.donutProgress.setText( Float.toString( value )+ " €" );
             donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
             donutProgress.setTextColor( Color.rgb(214, 17, 17));
         }
