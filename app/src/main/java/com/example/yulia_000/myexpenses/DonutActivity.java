@@ -97,9 +97,8 @@ public class DonutActivity extends AppCompatActivity {
 
            // setValue(betrag+"");
         }
-       // betragBerechnenErsparnisse(betrag);
-
-
+        betragBerechnenErsparnisse(betrag);
+        
         SaveupRepo saveupRepo = new SaveupRepo();
         List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
         double saveupBetrag = 0;
