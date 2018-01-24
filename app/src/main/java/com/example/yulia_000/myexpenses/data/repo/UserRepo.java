@@ -67,7 +67,7 @@ public class UserRepo {
         }
         cursor.close();
         return true;
-    }
+    } 
 
     public User getUserByName(String name){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
