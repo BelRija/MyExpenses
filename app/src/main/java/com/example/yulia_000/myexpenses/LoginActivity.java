@@ -36,9 +36,6 @@ public class LoginActivity extends Activity {
     public static final String ID = "userId";
     SharedPreferences sharedpreferences;
 
-/*  Button btnCancel;
-    Button btnReg;*/
-
     public static final String MSG = "MSG";
 
     @Override
@@ -74,12 +71,9 @@ public class LoginActivity extends Activity {
 // TODO Auto-generated method stub
                 String stringName=txtUserName.getText().toString();
                 String stringPwd=txtPassword.getText().toString();
-                //   if((txtUserName.getText().toString()).equals(txtPassword.getText().toString())){
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();
-
-
 
                     if(userRepo.isLoggedIn(stringName,stringPwd)){
                         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
@@ -93,13 +87,10 @@ public class LoginActivity extends Activity {
 
                         Toast.makeText(LoginActivity.this, "LogIn Successful",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, DonutActivity.class);
-//                        String message =stringName;
-//                        intent.putExtra(MSG, message);
                         startActivity(intent);
                     }else{
                         Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();
                     }
-
 
                 } else{
                     Toast.makeText(LoginActivity.this, "Invalid Name or Password",Toast.LENGTH_LONG).show();
@@ -108,8 +99,6 @@ public class LoginActivity extends Activity {
             }
         });
     }
-
-
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?

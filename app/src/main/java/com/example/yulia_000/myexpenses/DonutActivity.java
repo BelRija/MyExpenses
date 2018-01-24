@@ -47,9 +47,6 @@ public class DonutActivity extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_donut );
 
-
-
-      //  text=(EditText) findViewById( R.id.EditText );
         donutProgress = (DonutProgress) findViewById(R.id.donut_progress);
         btnHinzu=(ImageButton)this.findViewById(R.id.hinzuImageButton);
         btnSparen=(ImageButton)this.findViewById(R.id.sparenImageButton);
@@ -71,8 +68,6 @@ public class DonutActivity extends AppCompatActivity {
 
         EntryRepo entryRepo = new EntryRepo();
 
-//        entryRepo.delete();
-       // SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Entry> entrys =  entryRepo.getList(sharedpreferences.getInt("userId",0));
         Log.d("MyApp","I am here");
         Log.d("MyApp",entrys.toString());
@@ -95,7 +90,6 @@ public class DonutActivity extends AppCompatActivity {
             Log.i("getBETRAG",betrag+"");
             setBetrag(betrag);
 
-           // setValue(betrag+"");
         }
         betragBerechnenErsparnisse(betrag);
         
@@ -106,7 +100,6 @@ public class DonutActivity extends AppCompatActivity {
         for (Saveup saveup : saveups) {
             try {
                 saveupBetrag = Double.parseDouble(saveup.getSaveupAmount());
-              //  Log.i("getSaRAG------| ",saveupBetrag+"");
             } catch(NumberFormatException nfe) {
             }
             String tmp = saveupBetrag+"";
@@ -120,7 +113,6 @@ public class DonutActivity extends AppCompatActivity {
 
         Toast.makeText(this,"MSG: "+message, Toast.LENGTH_LONG).show();
 
-        //setMax(betrag+"");
         setMax(tmpuser.getCredit()); Log.i("getBetragAsFloat",getBetrag()+"");
         setValue(betrag+"",tmpuser);
 
@@ -189,13 +181,9 @@ public class DonutActivity extends AppCompatActivity {
     float max;
     public void setMax(String msg){
         float value = Float.valueOf(msg);
-        // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
         this.donutProgress.setMax( value );
          max=this.donutProgress.getMax();
         Log.i("PROVERMAX",max+"");
-     /*   Toast.makeText(this,"max: "+Float.toString( max ), Toast.LENGTH_LONG).show();
-        this.donutProgress.setText( Float.toString( value )+ "€" );
-        donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));*/
 
     }
 
@@ -210,7 +198,6 @@ public class DonutActivity extends AppCompatActivity {
         float val = value;
         float valueP = (val*100)/max;
         this.donutProgress.setProgress( val );
-        //Log.i("PROVERPROGRESS",this.donutProgress.getProgress()+"");
         DecimalFormat df = new DecimalFormat("0.00");
         if(value>=0){
             this.donutProgress.setText(  df.format(value) + " €" );
@@ -220,16 +207,12 @@ public class DonutActivity extends AppCompatActivity {
                 donutProgress.setFinishedStrokeColor( Color.rgb( 2, 204, 2 ));
                 donutProgress.setTextColor( Color.rgb( 2, 204, 2 ));
             }else  if(valueP >= 25.0 && valueP < 50.0){
-                //Log.i("LALA25",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 102, 0 ));
                 donutProgress.setTextColor( Color.rgb(255, 102, 0 ));
             }else  if(valueP >= 50.0 && valueP < 75.0){
-                //Log.i("LALA50",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(255, 247, 0));
                 donutProgress.setTextColor( Color.rgb(255, 247, 0));
-
             }else {
-              //  Log.i("LALA",valueP+"");
                 donutProgress.setFinishedStrokeColor( Color.rgb(214, 17, 17));
                donutProgress.setTextColor( Color.rgb(214, 17, 17));
             }

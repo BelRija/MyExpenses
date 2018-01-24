@@ -64,19 +64,15 @@ public class ListActivity extends AppCompatActivity {
 
         SaveupRepo saveupRepo = new SaveupRepo();
 
-
-//        entryRepo.delete();
-        //       SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         List<Saveup> saveups =  saveupRepo.getList(sharedpreferences.getInt("userId",0));
 
         saveup_listing = new ArrayList<String>();
+
         float summe=0;
         DecimalFormat df = new DecimalFormat("0.00");
-
         float tmpbetrag=0;
+
         for (Saveup saveup : saveups){
-       // for(int i=saveups.size()-1;i>1;i--){
-          //  addToList(saveup.getSaveupDescription(), saveup.getSaveupAmount());
 
             Log.d("getID",saveup.getID()+"");
             Log.d("getUserID",saveup.getUserID()+"");

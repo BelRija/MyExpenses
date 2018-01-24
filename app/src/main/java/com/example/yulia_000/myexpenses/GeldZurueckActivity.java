@@ -25,11 +25,7 @@ public class GeldZurueckActivity extends Activity {
 
     EditText txtBetrag;
     EditText txtDatum;
-
     Button btnOK;
-
-/*  Button btnCancel;
-    Button btnReg;*/
 
     public static final String MSG = "MSG";
 
@@ -91,8 +87,6 @@ public class GeldZurueckActivity extends Activity {
                     Intent intent = new Intent(GeldZurueckActivity.this, ListActivity.class);
                     startActivity(intent);
                 }
-//                    Intent intent = new Intent(GeldZurueckActivity.this, Guthaben.class);
-//                    startActivity(intent);
 
             }
         });

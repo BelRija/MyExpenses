@@ -17,8 +17,6 @@ public class KontostandActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.einnahme_layout);
-//        btnKontostand = (Button) findViewById(R.id.btnOk);
-
 
         btnKontostand.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -47,7 +47,6 @@ public class SigninActivity extends Activity {
             // TODO Auto-generated method stub
                 String stringName=txtUserName.getText().toString();
                 String stringPwd=txtPassword.getText().toString();
-                //   if((txtUserName.getText().toString()).equals(txtPassword.getText().toString())){
                 if(stringName.length() > 1 && stringPwd.length() > 3 ){
 
                     UserRepo userRepo = new UserRepo();

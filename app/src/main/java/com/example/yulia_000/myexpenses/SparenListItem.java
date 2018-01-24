@@ -15,7 +15,6 @@ public class SparenListItem {
             setBetrag( betrag );
             setBezeichnung( bezeichnung );
         }
-
     }
 
     public String getBezeichnung() {
