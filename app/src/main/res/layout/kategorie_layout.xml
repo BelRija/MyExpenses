@@ -32,7 +32,8 @@
             android:onClick="onRadioButtonClicked"
             android:scaleType="fitXY"
             android:text="Ausgabe"
-            android:textStyle="bold"/>
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/einnahmeButton"
@@ -41,13 +42,14 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="0dp"
             android:background="@drawable/round_button"
             android:button="@drawable/wallet_1"
             android:onClick="onRadioButtonClicked"
             android:scaleType="fitXY"
-            android:text="Einnahme" />
+            android:text="Einnahme"
+            android:textAlignment="center" />
 
     </RadioGroup>
 
