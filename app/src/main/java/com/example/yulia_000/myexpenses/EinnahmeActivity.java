@@ -50,14 +50,10 @@ public class EinnahmeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.einnahme_layout);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         Log.i("EINNAHMENAKTIVITY","IN");
 
-
         theDate = (TextView)findViewById(R.id.txtDate);
-        // txtKategorien = ((Spinner)findViewById(R.id.SpinnerFeedbackType));
         spinner = (Spinner) findViewById(R.id.SpinnerFeedbackType);
         txtBezeichung = (TextView)findViewById(R.id.txtBezeichungKategorien);
         txtBetrag = (TextView)findViewById(R.id.txtEuroKategorien);
@@ -80,7 +76,6 @@ public class EinnahmeActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.kategorieliste, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        // spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -104,14 +99,12 @@ public class EinnahmeActivity extends AppCompatActivity {
             }
         });
 
-
         Intent incomingIntent = getIntent();
         String date = incomingIntent.getStringExtra("date");
         theDate.setText(date);
         String betrag = incomingIntent.getStringExtra("betrag");
         String bez = incomingIntent.getStringExtra("bez");
         String kategorie = incomingIntent.getStringExtra("kategorie");
-        //Log.i("PROVERKA",""+betrag);
         if(bez!=null)
             txtBezeichung.setText( bez );
         if(betrag!=null)
@@ -119,9 +112,7 @@ public class EinnahmeActivity extends AppCompatActivity {
         if(kategorie!= null && spinner!=null){
             for (int position = 0; position < spinner.getAdapter().getCount(); position++) {
                 if(adapter.getItem(position) !=null) {
-                    //Log.i("PROVERKA",""+kategorie);
                     if(adapter.getItem(position).equals(kategorie)){
-                        //Log.i("PROVERKA",""+kategorie);
                         spinner.setSelection(position);
                         return;
                     }
@@ -129,43 +120,6 @@ public class EinnahmeActivity extends AppCompatActivity {
             }
         }
         String stringDate = txtDate.getText().toString();
-
-        // Calendar c = Calendar.getInstance();
-        // int mYear = c.get(Calendar.YEAR);
-        // int mMonth = c.get(Calendar.MONTH);
-        // int mDay = c.get(Calendar.DAY_OF_MONTH);
-        // theDate.setText(mDay+"/"+(mMonth+1)+"/"+mYear);
-
-
-
-
-        /*btnOkKategorie.setOnClickListener(new OnClickListener(){
-            // String stringKategorie =
-            String stringBezeichung = txtBezeichung.getText().toString();
-            String stringBetrag = txtBetrag.getText().toString();
-            String stringDate = txtDate.getText().toString();
-
-
-            @Override
-            public void onClick(View view){
-
-                SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-
-                EntryRepo entryRepo = new EntryRepo();
-                Entry entry = new Entry();
-                entry.setID(null);
-                entry.setUserID(sharedpreferences.getInt("userId",0));
-                entry.setKategory(kategoryText);
-                entry.setDescription(txtBezeichung.getText().toString());
-                entry.setAmount(txtBetrag.getText().toString());
-                entry.setDate(stringDate);
-                entryRepo.insert(entry);
-
-                Toast.makeText(MainActivity.this, "Ausgabe erfolgreich eingetragen!",Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, DonutActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         theDate.setOnClickListener(new OnClickListener(){
             @Override
@@ -178,13 +132,11 @@ public class EinnahmeActivity extends AppCompatActivity {
                 intent.putExtra("betrag", stringBetrag);
                 intent.putExtra("bez",stringBezeichung);
                 intent.putExtra("kategorie",kategoryText);
-                //Log.i("PROVERKA1",""+kategoryText);
                 startActivity(intent);
             }
         });
 
     }
-
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?

@@ -3,10 +3,10 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<!--
     <item
         android:id="@+id/action_msg"
         android:title="action_msg"
-        app:showAsAction="never" />
+        app:showAsAction="never" />-->
 
 </menu>

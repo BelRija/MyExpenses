@@ -51,7 +51,6 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         chart = (PieChart) findViewById(R.id.chart);
         Intent intent = getIntent();
         String message = intent.getStringExtra("betrag");
-        //Log.i("HAHAHA",message);
         float guthaben=0;
         if(message!=null) {
          guthaben = Float.valueOf(message);}
@@ -96,7 +95,6 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
         for(Kategorie k:kats){
             float betrag = Float.valueOf(k.getBetrag());
             String tmp=k.getBetrag()+"";
-//            if(entry.getKategory().equals(entires[1]))
             Log.i("getTMP",tmp.charAt( 0 )+"");
             guthabenP = (betrag*100)/guthaben;
             if(tmp.charAt( 0 )=='-') guthabenP*=(-1);
@@ -118,6 +116,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
                 R.color.pink2, R.color.orange1, R.color.choco, R.color.kreme}, this);
 
         set.setHighlightEnabled(true);
+        chart.setHighlightPerTapEnabled(true);
         set.setDrawValues(true);
         set.setValueFormatter(new MyValueFormatter());
         set.setValueTextColor( Color.WHITE);
@@ -167,10 +166,17 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
 
     @Override
     public void onValueSelected(com.github.mikephil.charting.data.Entry e, Highlight h) {
-        Log.i("PROVERKA",""+h.getX());
-        Log.i("PROVERKA1",""+h.getDrawX());
-        Log.i("PROVERKA2",""+h.getAxis());
-        Log.i("PROVERKA3",""+ e.getData());
+
+        PieEntry pe = (PieEntry) e;
+        Log.i("PROVERKA3",""+ pe.getLabel());
+        value(pe.getLabel());
+
+    }
+
+    public void value(String label){
+        Intent intent = new Intent(this, ZusammenfassungActivity.class);
+        intent.putExtra("kategorie", label);
+        startActivity(intent);
     }
 
     @Override

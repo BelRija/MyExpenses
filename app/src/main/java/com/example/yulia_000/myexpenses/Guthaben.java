@@ -37,16 +37,12 @@ public class Guthaben extends Activity{
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
 
-
-     //   txtUserName.setText("Hallo "+tmpuser.getName().toString()+"!");
-
         txtUserName.setText(txtUserName.getText()+"\n"+"Verfügbare Finanzen:");
     }
 
     public void setValue(View view){
         text=(EditText) findViewById( R.id.EditText );
         if(text.length() > 1){
-            // float value = Float.valueOf(text.getText().toString());
             Intent intent = new Intent(this, DonutActivity.class);
             String message = text.getText().toString();
 
@@ -55,15 +51,10 @@ public class Guthaben extends Activity{
             User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
 
             userRepo.updateUser(tmpuser.getUserId(), message);
-
-         //   intent.putExtra(MSG, message);
             startActivity(intent);
         }else{
             Toast.makeText(Guthaben.this, "Error!",Toast.LENGTH_LONG).show();
         }
-
-
-        // Toast.makeText(this,text.toString(), Toast.LENGTH_LONG).show();
     }
 
 }

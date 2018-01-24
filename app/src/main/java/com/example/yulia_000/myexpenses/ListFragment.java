@@ -91,14 +91,7 @@ public class ListFragment extends Fragment{
 
         View rootView = inflater.inflate(R.layout.list_fragment, container, false);
 
-      //  ListView listView = (ListView) rootView.findViewById(R.id.listview_liste);
-       // listView.setAdapter(aktienlisteAdapter);
-      //  registerForContextMenu(listView);
-
         return rootView;
-
-        //return inflater.inflate(R.layout.fragment_main, container, false);
-
     }
 
     @Override

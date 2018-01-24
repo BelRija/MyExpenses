@@ -181,12 +181,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedpreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         String stringDate = txtDate.getText().toString();
         if(txtBezeichung.getText().length()!=0 && txtBetrag.getText().length()!=0 && stringDate.length()!=0){
-           // Log.i("PROVERKA",""+txtBezeichung.getText().length()+" | "+txtBetrag.getText().length()+" | "+stringDate.length());
-
-
-           // if(einnahme.isChecked()==true){
-                //EA-Marker!!- Datenbank
-                //Summe vergleichen
 
                 UserRepo userRepo = new UserRepo();
                 User tmpuser = userRepo.getUserByName(sharedpreferences.getString("name",""));
